@@ -1,0 +1,321 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 6 12
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L 74xx:74LS377 U?
+U 1 1 5ECB496B
+P 5600 1750
+AR Path="/5ECB496B" Ref="U?"  Part="1" 
+AR Path="/5ECB2A45/5ECB496B" Ref="U1"  Part="1" 
+F 0 "U1" H 5600 2731 50  0000 C CNN
+F 1 "74LS377" H 5600 2640 50  0000 C CNN
+F 2 "Package_DIP:DIP-20_W7.62mm" H 5600 1750 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS377" H 5600 1750 50  0001 C CNN
+	1    5600 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS377 U?
+U 1 1 5ECB4971
+P 5100 4950
+AR Path="/5ECB4971" Ref="U?"  Part="1" 
+AR Path="/5ECB2A45/5ECB4971" Ref="U5"  Part="1" 
+F 0 "U5" H 5100 5931 50  0000 C CNN
+F 1 "74LS377" H 5100 5840 50  0000 C CNN
+F 2 "Package_DIP:DIP-20_W7.62mm" H 5100 4950 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS377" H 5100 4950 50  0001 C CNN
+	1    5100 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Counter_Clockwise J?
+U 1 1 5ECB4977
+P 8550 1900
+AR Path="/5ECB4977" Ref="J?"  Part="1" 
+AR Path="/5ECB2A45/5ECB4977" Ref="J1"  Part="1" 
+F 0 "J1" H 8600 2317 50  0000 C CNN
+F 1 "Conn_02x06_Counter_Clockwise" H 8600 2226 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical" H 8550 1900 50  0001 C CNN
+F 3 "~" H 8550 1900 50  0001 C CNN
+	1    8550 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Counter_Clockwise J?
+U 1 1 5ECB497D
+P 8600 4600
+AR Path="/5ECB497D" Ref="J?"  Part="1" 
+AR Path="/5ECB2A45/5ECB497D" Ref="J3"  Part="1" 
+F 0 "J3" H 8650 5017 50  0000 C CNN
+F 1 "Conn_02x06_Counter_Clockwise" H 8650 4926 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x06_P2.54mm_Vertical" H 8600 4600 50  0001 C CNN
+F 3 "~" H 8600 4600 50  0001 C CNN
+	1    8600 4600
+	1    0    0    -1  
+$EndComp
+Text Notes 8450 1300 0    50   ~ 0
+OUTPUT
+Text Notes 8550 3700 0    50   ~ 0
+INPUT
+$Comp
+L power:GNDREF #PWR0148
+U 1 1 5ED04BA0
+P 8350 1900
+F 0 "#PWR0148" H 8350 1650 50  0001 C CNN
+F 1 "GNDREF" V 8355 1772 50  0000 R CNN
+F 2 "" H 8350 1900 50  0001 C CNN
+F 3 "" H 8350 1900 50  0001 C CNN
+	1    8350 1900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GNDREF #PWR0149
+U 1 1 5ED055DC
+P 8350 2000
+F 0 "#PWR0149" H 8350 1750 50  0001 C CNN
+F 1 "GNDREF" V 8355 1872 50  0000 R CNN
+F 2 "" H 8350 2000 50  0001 C CNN
+F 3 "" H 8350 2000 50  0001 C CNN
+	1    8350 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GNDREF #PWR0150
+U 1 1 5ED08922
+P 8400 4600
+F 0 "#PWR0150" H 8400 4350 50  0001 C CNN
+F 1 "GNDREF" V 8405 4472 50  0000 R CNN
+F 2 "" H 8400 4600 50  0001 C CNN
+F 3 "" H 8400 4600 50  0001 C CNN
+	1    8400 4600
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GNDREF #PWR0151
+U 1 1 5ED0904E
+P 8400 4700
+F 0 "#PWR0151" H 8400 4450 50  0001 C CNN
+F 1 "GNDREF" V 8405 4572 50  0000 R CNN
+F 2 "" H 8400 4700 50  0001 C CNN
+F 3 "" H 8400 4700 50  0001 C CNN
+	1    8400 4700
+	0    1    1    0   
+$EndComp
+$Comp
+L power:VCC #PWR?
+U 1 1 5ED09E4F
+P 8400 4400
+F 0 "#PWR?" H 8400 4250 50  0001 C CNN
+F 1 "VCC" V 8415 4527 50  0000 L CNN
+F 2 "" H 8400 4400 50  0001 C CNN
+F 3 "" H 8400 4400 50  0001 C CNN
+	1    8400 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:VCC #PWR?
+U 1 1 5ED0A0AA
+P 8400 4500
+F 0 "#PWR?" H 8400 4350 50  0001 C CNN
+F 1 "VCC" V 8415 4627 50  0000 L CNN
+F 2 "" H 8400 4500 50  0001 C CNN
+F 3 "" H 8400 4500 50  0001 C CNN
+	1    8400 4500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:VCC #PWR?
+U 1 1 5ED0A315
+P 8350 1700
+F 0 "#PWR?" H 8350 1550 50  0001 C CNN
+F 1 "VCC" V 8365 1827 50  0000 L CNN
+F 2 "" H 8350 1700 50  0001 C CNN
+F 3 "" H 8350 1700 50  0001 C CNN
+	1    8350 1700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:VCC #PWR?
+U 1 1 5ED0B838
+P 8350 1800
+F 0 "#PWR?" H 8350 1650 50  0001 C CNN
+F 1 "VCC" V 8365 1927 50  0000 L CNN
+F 2 "" H 8350 1800 50  0001 C CNN
+F 3 "" H 8350 1800 50  0001 C CNN
+	1    8350 1800
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8850 1700 9550 1700
+Wire Wire Line
+	9550 1700 9550 2500
+Wire Wire Line
+	7000 2500 7000 1650
+Wire Wire Line
+	7000 1650 6100 1650
+Wire Wire Line
+	6100 1250 7000 1250
+Wire Wire Line
+	7000 1250 7000 850 
+Wire Wire Line
+	7000 850  9350 850 
+Wire Wire Line
+	9350 850  9350 1800
+Wire Wire Line
+	9350 1800 8850 1800
+Wire Wire Line
+	8850 1900 9450 1900
+Wire Wire Line
+	9450 1900 9450 2600
+Wire Wire Line
+	9450 2600 6900 2600
+Wire Wire Line
+	6900 2600 6900 1750
+Wire Wire Line
+	6900 1750 6100 1750
+Wire Wire Line
+	6100 1850 6800 1850
+Wire Wire Line
+	6800 1850 6800 2700
+Wire Wire Line
+	6800 2700 9350 2700
+Wire Wire Line
+	9350 2700 9350 2100
+Wire Wire Line
+	9350 2100 8850 2100
+Wire Wire Line
+	8350 2200 8350 2800
+Wire Wire Line
+	8350 2800 6650 2800
+Wire Wire Line
+	6650 2800 6650 1950
+Wire Wire Line
+	6650 1950 6100 1950
+Wire Wire Line
+	8850 2000 9250 2000
+Wire Wire Line
+	9250 2000 9250 950 
+Wire Wire Line
+	9250 950  7100 950 
+Wire Wire Line
+	7100 950  7100 1350
+Wire Wire Line
+	7100 1350 6100 1350
+Wire Wire Line
+	6100 1450 7200 1450
+Wire Wire Line
+	7200 1450 7200 1050
+Wire Wire Line
+	7200 1050 9150 1050
+Wire Wire Line
+	9150 1050 9150 2200
+Wire Wire Line
+	9150 2200 8850 2200
+Wire Wire Line
+	8350 2100 7100 2100
+Wire Wire Line
+	7100 2100 7100 1550
+Wire Wire Line
+	7100 1550 6100 1550
+Wire Wire Line
+	9550 2500 7000 2500
+Wire Wire Line
+	8900 4400 9600 4400
+Wire Wire Line
+	9400 3550 9400 4500
+Wire Wire Line
+	9400 4500 8900 4500
+Wire Wire Line
+	8900 4600 9500 4600
+Wire Wire Line
+	9400 4800 8900 4800
+Wire Wire Line
+	8900 4700 9300 4700
+Wire Wire Line
+	9300 4700 9300 3650
+Wire Wire Line
+	9200 3750 9200 4900
+Wire Wire Line
+	9200 4900 8900 4900
+Wire Wire Line
+	8400 4800 7150 4800
+Wire Wire Line
+	4300 3550 9400 3550
+Wire Wire Line
+	4200 3650 9300 3650
+Wire Wire Line
+	4100 3750 9200 3750
+Wire Wire Line
+	4600 4450 4300 4450
+Wire Wire Line
+	4300 3550 4300 4450
+Wire Wire Line
+	4600 4550 4200 4550
+Wire Wire Line
+	4200 3650 4200 4550
+Wire Wire Line
+	4100 4650 4600 4650
+Wire Wire Line
+	4100 3750 4100 4650
+Wire Wire Line
+	4600 4750 4000 4750
+Wire Wire Line
+	4000 4750 4000 3850
+Wire Wire Line
+	4000 3850 7150 3850
+Wire Wire Line
+	7150 3850 7150 4800
+Wire Wire Line
+	9600 6400 4000 6400
+Wire Wire Line
+	4000 4850 4600 4850
+Wire Wire Line
+	9500 6300 4100 6300
+Wire Wire Line
+	4100 4950 4600 4950
+Wire Wire Line
+	9400 6200 4200 6200
+Wire Wire Line
+	4200 5050 4600 5050
+Wire Wire Line
+	8400 4900 7150 4900
+Wire Wire Line
+	7150 6100 4300 6100
+Wire Wire Line
+	4300 5150 4600 5150
+Wire Wire Line
+	9600 4400 9600 6400
+Wire Wire Line
+	9500 4600 9500 6300
+Wire Wire Line
+	9400 4800 9400 6200
+Wire Wire Line
+	7150 4900 7150 6100
+Wire Wire Line
+	4300 5150 4300 6100
+Wire Wire Line
+	4200 5050 4200 6200
+Wire Wire Line
+	4100 4950 4100 6300
+Wire Wire Line
+	4000 4850 4000 6400
+Wire Bus Line
+	6300 4300 6300 4900
+Wire Bus Line
+	6300 4900 6400 4900
+Wire Bus Line
+	6300 4900 6300 5500
+Connection ~ 6300 4900
+$EndSCHEMATC

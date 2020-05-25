@@ -1,0 +1,598 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 12
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:USB_B_Micro J2
+U 1 1 5EBEDC63
+P 9250 5850
+F 0 "J2" H 9307 6317 50  0000 C CNN
+F 1 "USB_B_Micro" H 9307 6226 50  0000 C CNN
+F 2 "Connector_USB:USB_Micro-B_Molex_47346-0001" H 9400 5800 50  0001 C CNN
+F 3 "~" H 9400 5800 50  0001 C CNN
+	1    9250 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push Reset1
+U 1 1 5EF2C428
+P 10550 6000
+F 0 "Reset1" H 10550 6285 50  0000 C CNN
+F 1 "SW_Push" H 10550 6194 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 10550 6200 50  0001 C CNN
+F 3 "~" H 10550 6200 50  0001 C CNN
+	1    10550 6000
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 3700 6000 1500 1200
+U 5EEB51A0
+F0 "Clock" 50
+F1 "tom-1-clock.sch" 50
+$EndSheet
+$Sheet
+S 3700 5200 1400 400 
+U 5EC259CE
+F0 "LCD" 50
+F1 "tom-1-lcd.sch" 50
+$EndSheet
+$Sheet
+S 9050 1150 1450 1050
+U 5EC3E773
+F0 "NAND" 50
+F1 "tom-1-nand.sch" 50
+$EndSheet
+$Sheet
+S 900  4450 2050 1200
+U 5EC4D7B2
+F0 "RAM" 50
+F1 "tom-1-ram.sch" 50
+$EndSheet
+$Sheet
+S 2150 850  1500 850 
+U 5ECB2A45
+F0 "I/O" 50
+F1 "tom-1-io.sch" 50
+$EndSheet
+$Sheet
+S 6250 750  1550 1150
+U 5ECB6025
+F0 "TOS" 50
+F1 "tom-1-tos.sch" 50
+$EndSheet
+$Sheet
+S 900  2400 1750 1550
+U 5ECB89A1
+F0 "Stack" 50
+F1 "tom-1-stack.sch" 50
+$EndSheet
+$Sheet
+S 9050 2450 1450 1100
+U 5ECBA3C5
+F0 "ADD" 50
+F1 "tom-1-add.sch" 50
+$EndSheet
+$Sheet
+S 3700 3900 950  900 
+U 5ECBD6DC
+F0 "ROM" 50
+F1 "tom-1-rom.sch" 50
+$EndSheet
+$Sheet
+S 4050 850  1200 800 
+U 5ECC038F
+F0 "Program Counter" 50
+F1 "tom-1-pc.sch" 50
+$EndSheet
+$Sheet
+S 900  850  750  1150
+U 5EC5C6EC
+F0 "D/R Registers" 50
+F1 "tom-1-dr_registers.sch" 50
+$EndSheet
+$Comp
+L Device:C C4
+U 1 1 5ECD3E53
+P 4350 2850
+F 0 "C4" H 4235 2804 50  0000 R CNN
+F 1 "C" H 4235 2895 50  0000 R CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 4388 2700 50  0001 C CNN
+F 3 "~" H 4350 2850 50  0001 C CNN
+	1    4350 2850
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 5ECD4C86
+P 4650 2850
+F 0 "C5" H 4535 2804 50  0000 R CNN
+F 1 "C" H 4535 2895 50  0000 R CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 4688 2700 50  0001 C CNN
+F 3 "~" H 4650 2850 50  0001 C CNN
+	1    4650 2850
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5ECD4F89
+P 4950 2850
+F 0 "C6" H 4835 2804 50  0000 R CNN
+F 1 "C" H 4835 2895 50  0000 R CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 4988 2700 50  0001 C CNN
+F 3 "~" H 4950 2850 50  0001 C CNN
+	1    4950 2850
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C7
+U 1 1 5ECD52A3
+P 5250 2850
+F 0 "C7" H 5135 2804 50  0000 R CNN
+F 1 "C" H 5135 2895 50  0000 R CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 5288 2700 50  0001 C CNN
+F 3 "~" H 5250 2850 50  0001 C CNN
+	1    5250 2850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5250 2700 4950 2700
+Connection ~ 4650 2700
+Wire Wire Line
+	4650 2700 4350 2700
+Connection ~ 4950 2700
+Wire Wire Line
+	4950 2700 4650 2700
+Wire Wire Line
+	4350 3000 4650 3000
+Connection ~ 4650 3000
+Wire Wire Line
+	4650 3000 4950 3000
+Connection ~ 4950 3000
+Wire Wire Line
+	4950 3000 5250 3000
+$Comp
+L Device:C C8
+U 1 1 5ECD97AF
+P 5550 2850
+F 0 "C8" H 5665 2896 50  0000 L CNN
+F 1 "C" H 5665 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 5588 2700 50  0001 C CNN
+F 3 "~" H 5550 2850 50  0001 C CNN
+	1    5550 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C9
+U 1 1 5ECD98EE
+P 5850 2850
+F 0 "C9" H 5965 2896 50  0000 L CNN
+F 1 "C" H 5965 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 5888 2700 50  0001 C CNN
+F 3 "~" H 5850 2850 50  0001 C CNN
+	1    5850 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C10
+U 1 1 5ECD9B20
+P 6200 2850
+F 0 "C10" H 6315 2896 50  0000 L CNN
+F 1 "C" H 6315 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6238 2700 50  0001 C CNN
+F 3 "~" H 6200 2850 50  0001 C CNN
+	1    6200 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C11
+U 1 1 5ECD9C83
+P 6550 2850
+F 0 "C11" H 6665 2896 50  0000 L CNN
+F 1 "C" H 6665 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6588 2700 50  0001 C CNN
+F 3 "~" H 6550 2850 50  0001 C CNN
+	1    6550 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C12
+U 1 1 5ECD9DF8
+P 6850 2850
+F 0 "C12" H 6965 2896 50  0000 L CNN
+F 1 "C" H 6965 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6888 2700 50  0001 C CNN
+F 3 "~" H 6850 2850 50  0001 C CNN
+	1    6850 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C13
+U 1 1 5ECD9F7F
+P 7100 2850
+F 0 "C13" H 7215 2896 50  0000 L CNN
+F 1 "C" H 7215 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7138 2700 50  0001 C CNN
+F 3 "~" H 7100 2850 50  0001 C CNN
+	1    7100 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C14
+U 1 1 5ECDA312
+P 7350 2850
+F 0 "C14" H 7465 2896 50  0000 L CNN
+F 1 "C" H 7465 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7388 2700 50  0001 C CNN
+F 3 "~" H 7350 2850 50  0001 C CNN
+	1    7350 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 2700 7100 2700
+Connection ~ 5250 2700
+Connection ~ 5550 2700
+Wire Wire Line
+	5550 2700 5250 2700
+Connection ~ 5850 2700
+Wire Wire Line
+	5850 2700 5550 2700
+Connection ~ 6200 2700
+Wire Wire Line
+	6200 2700 5850 2700
+Connection ~ 6550 2700
+Wire Wire Line
+	6550 2700 6200 2700
+Connection ~ 6850 2700
+Wire Wire Line
+	6850 2700 6550 2700
+Connection ~ 7100 2700
+Wire Wire Line
+	7100 2700 6850 2700
+Wire Wire Line
+	5250 3000 5550 3000
+Connection ~ 5250 3000
+Connection ~ 5550 3000
+Wire Wire Line
+	5550 3000 5850 3000
+Connection ~ 5850 3000
+Wire Wire Line
+	5850 3000 6200 3000
+Connection ~ 6200 3000
+Wire Wire Line
+	6200 3000 6550 3000
+Connection ~ 6550 3000
+Wire Wire Line
+	6550 3000 6850 3000
+Connection ~ 6850 3000
+Wire Wire Line
+	6850 3000 7100 3000
+Connection ~ 7100 3000
+Wire Wire Line
+	7100 3000 7350 3000
+$Comp
+L Device:C C16
+U 1 1 5ECDEDC4
+P 7650 2850
+F 0 "C16" H 7765 2896 50  0000 L CNN
+F 1 "C" H 7765 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7688 2700 50  0001 C CNN
+F 3 "~" H 7650 2850 50  0001 C CNN
+	1    7650 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C17
+U 1 1 5ECDF050
+P 7900 2850
+F 0 "C17" H 8015 2896 50  0000 L CNN
+F 1 "C" H 8015 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7938 2700 50  0001 C CNN
+F 3 "~" H 7900 2850 50  0001 C CNN
+	1    7900 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C18
+U 1 1 5ECDF21F
+P 8100 2850
+F 0 "C18" H 8215 2896 50  0000 L CNN
+F 1 "C" H 8215 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 8138 2700 50  0001 C CNN
+F 3 "~" H 8100 2850 50  0001 C CNN
+	1    8100 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C15
+U 1 1 5ECDF400
+P 4100 2850
+F 0 "C15" H 4215 2896 50  0000 L CNN
+F 1 "C" H 4215 2805 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 4138 2700 50  0001 C CNN
+F 3 "~" H 4100 2850 50  0001 C CNN
+	1    4100 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C19
+U 1 1 5ECE30C9
+P 5300 3500
+F 0 "C19" H 5415 3546 50  0000 L CNN
+F 1 "C" H 5415 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 5338 3350 50  0001 C CNN
+F 3 "~" H 5300 3500 50  0001 C CNN
+	1    5300 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C20
+U 1 1 5ECE32CE
+P 5550 3500
+F 0 "C20" H 5665 3546 50  0000 L CNN
+F 1 "C" H 5665 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 5588 3350 50  0001 C CNN
+F 3 "~" H 5550 3500 50  0001 C CNN
+	1    5550 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C21
+U 1 1 5ECE34E5
+P 5850 3500
+F 0 "C21" H 5965 3546 50  0000 L CNN
+F 1 "C" H 5965 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 5888 3350 50  0001 C CNN
+F 3 "~" H 5850 3500 50  0001 C CNN
+	1    5850 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C22
+U 1 1 5ECE370E
+P 6100 3500
+F 0 "C22" H 6215 3546 50  0000 L CNN
+F 1 "C" H 6215 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6138 3350 50  0001 C CNN
+F 3 "~" H 6100 3500 50  0001 C CNN
+	1    6100 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C23
+U 1 1 5ECE3949
+P 6400 3500
+F 0 "C23" H 6515 3546 50  0000 L CNN
+F 1 "C" H 6515 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6438 3350 50  0001 C CNN
+F 3 "~" H 6400 3500 50  0001 C CNN
+	1    6400 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C24
+U 1 1 5ECE3B96
+P 6650 3500
+F 0 "C24" H 6765 3546 50  0000 L CNN
+F 1 "C" H 6765 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6688 3350 50  0001 C CNN
+F 3 "~" H 6650 3500 50  0001 C CNN
+	1    6650 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C25
+U 1 1 5ECE3DF5
+P 6950 3500
+F 0 "C25" H 7065 3546 50  0000 L CNN
+F 1 "C" H 7065 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 6988 3350 50  0001 C CNN
+F 3 "~" H 6950 3500 50  0001 C CNN
+	1    6950 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C26
+U 1 1 5ECE4066
+P 7150 3500
+F 0 "C26" H 7265 3546 50  0000 L CNN
+F 1 "C" H 7265 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7188 3350 50  0001 C CNN
+F 3 "~" H 7150 3500 50  0001 C CNN
+	1    7150 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C27
+U 1 1 5ECE43E6
+P 7450 3500
+F 0 "C27" H 7565 3546 50  0000 L CNN
+F 1 "C" H 7565 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7488 3350 50  0001 C CNN
+F 3 "~" H 7450 3500 50  0001 C CNN
+	1    7450 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C28
+U 1 1 5ECE467B
+P 7750 3500
+F 0 "C28" H 7865 3546 50  0000 L CNN
+F 1 "C" H 7865 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 7788 3350 50  0001 C CNN
+F 3 "~" H 7750 3500 50  0001 C CNN
+	1    7750 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C29
+U 1 1 5ECE4922
+P 8050 3500
+F 0 "C29" H 8165 3546 50  0000 L CNN
+F 1 "C" H 8165 3455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm" H 8088 3350 50  0001 C CNN
+F 3 "~" H 8050 3500 50  0001 C CNN
+	1    8050 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4350 3000 4100 3000
+Connection ~ 4350 3000
+Connection ~ 4100 3000
+Wire Wire Line
+	4100 3000 3800 3000
+Wire Wire Line
+	4350 2700 4100 2700
+Connection ~ 4350 2700
+Connection ~ 4100 2700
+Wire Wire Line
+	4100 2700 3800 2700
+Wire Wire Line
+	7350 2700 7650 2700
+Connection ~ 7350 2700
+Connection ~ 7650 2700
+Wire Wire Line
+	7650 2700 7900 2700
+Connection ~ 7900 2700
+Wire Wire Line
+	7900 2700 8100 2700
+Connection ~ 8100 2700
+Wire Wire Line
+	8100 2700 8400 2700
+Wire Wire Line
+	7350 3000 7650 3000
+Connection ~ 7350 3000
+Connection ~ 7650 3000
+Wire Wire Line
+	7650 3000 7900 3000
+Connection ~ 7900 3000
+Wire Wire Line
+	7900 3000 8100 3000
+Connection ~ 8100 3000
+Wire Wire Line
+	8100 3000 8400 3000
+Wire Wire Line
+	8400 3350 8050 3350
+Connection ~ 5300 3350
+Wire Wire Line
+	5300 3350 5000 3350
+Connection ~ 5550 3350
+Wire Wire Line
+	5550 3350 5300 3350
+Connection ~ 5850 3350
+Wire Wire Line
+	5850 3350 5550 3350
+Connection ~ 6100 3350
+Wire Wire Line
+	6100 3350 5850 3350
+Connection ~ 6400 3350
+Wire Wire Line
+	6400 3350 6100 3350
+Connection ~ 6650 3350
+Wire Wire Line
+	6650 3350 6400 3350
+Connection ~ 6950 3350
+Wire Wire Line
+	6950 3350 6650 3350
+Connection ~ 7150 3350
+Wire Wire Line
+	7150 3350 6950 3350
+Connection ~ 7450 3350
+Wire Wire Line
+	7450 3350 7150 3350
+Connection ~ 7750 3350
+Wire Wire Line
+	7750 3350 7450 3350
+Connection ~ 8050 3350
+Wire Wire Line
+	8050 3350 7750 3350
+Wire Wire Line
+	5000 3650 5300 3650
+Connection ~ 5300 3650
+Wire Wire Line
+	5300 3650 5550 3650
+Connection ~ 5550 3650
+Wire Wire Line
+	5550 3650 5850 3650
+Connection ~ 5850 3650
+Wire Wire Line
+	5850 3650 6100 3650
+Connection ~ 6100 3650
+Wire Wire Line
+	6100 3650 6400 3650
+Connection ~ 6400 3650
+Wire Wire Line
+	6400 3650 6650 3650
+Connection ~ 6650 3650
+Wire Wire Line
+	6650 3650 6950 3650
+Connection ~ 6950 3650
+Wire Wire Line
+	6950 3650 7150 3650
+Connection ~ 7150 3650
+Wire Wire Line
+	7150 3650 7450 3650
+Connection ~ 7450 3650
+Wire Wire Line
+	7450 3650 7750 3650
+Connection ~ 7750 3650
+Wire Wire Line
+	7750 3650 8050 3650
+Connection ~ 8050 3650
+Wire Wire Line
+	8050 3650 8400 3650
+$Comp
+L power:VCC #PWR0123
+U 1 1 5EDCDA00
+P 3800 2700
+F 0 "#PWR0123" H 3800 2550 50  0001 C CNN
+F 1 "VCC" H 3815 2873 50  0000 C CNN
+F 2 "" H 3800 2700 50  0001 C CNN
+F 3 "" H 3800 2700 50  0001 C CNN
+	1    3800 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0124
+U 1 1 5EDCFA62
+P 5000 3350
+F 0 "#PWR0124" H 5000 3200 50  0001 C CNN
+F 1 "VCC" H 5015 3523 50  0000 C CNN
+F 2 "" H 5000 3350 50  0001 C CNN
+F 3 "" H 5000 3350 50  0001 C CNN
+	1    5000 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDREF #PWR0125
+U 1 1 5EDD16B7
+P 3800 3000
+F 0 "#PWR0125" H 3800 2750 50  0001 C CNN
+F 1 "GNDREF" H 3805 2827 50  0000 C CNN
+F 2 "" H 3800 3000 50  0001 C CNN
+F 3 "" H 3800 3000 50  0001 C CNN
+	1    3800 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDREF #PWR0126
+U 1 1 5EDD1AFF
+P 5000 3650
+F 0 "#PWR0126" H 5000 3400 50  0001 C CNN
+F 1 "GNDREF" H 5005 3477 50  0000 C CNN
+F 2 "" H 5000 3650 50  0001 C CNN
+F 3 "" H 5000 3650 50  0001 C CNN
+	1    5000 3650
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

@@ -1,0 +1,243 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 12
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Switch:SW_Push Step1
+U 1 1 5EC520CB
+P 3350 2750
+F 0 "Step1" V 3400 3100 50  0000 C CNN
+F 1 "SW_Push" V 3300 3100 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 3350 2950 50  0001 C CNN
+F 3 "~" H 3350 2950 50  0001 C CNN
+	1    3350 2750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5EC534A8
+P 3650 2000
+F 0 "R2" H 3720 2046 50  0000 L CNN
+F 1 "R" H 3720 1955 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 3580 2000 50  0001 C CNN
+F 3 "~" H 3650 2000 50  0001 C CNN
+	1    3650 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5EC54320
+P 4050 2000
+F 0 "R3" H 4120 2046 50  0000 L CNN
+F 1 "R" H 4120 1955 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 3980 2000 50  0001 C CNN
+F 3 "~" H 4050 2000 50  0001 C CNN
+	1    4050 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:DIODE D1
+U 1 1 5EC54E2C
+P 4450 2000
+F 0 "D1" H 4450 2265 50  0000 C CNN
+F 1 "DIODE" H 4450 2174 50  0000 C CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P2.54mm_Vertical_AnodeUp" H 4450 2000 50  0001 C CNN
+F 3 "~" H 4450 2000 50  0001 C CNN
+	1    4450 2000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5EC564C4
+P 6500 2000
+F 0 "R4" H 6570 2046 50  0000 L CNN
+F 1 "R" H 6570 1955 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 6430 2000 50  0001 C CNN
+F 3 "~" H 6500 2000 50  0001 C CNN
+	1    6500 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 5EC57066
+P 5500 3450
+F 0 "#PWR0101" H 5500 3200 50  0001 C CNN
+F 1 "GND" H 5505 3277 50  0000 C CNN
+F 2 "" H 5500 3450 50  0001 C CNN
+F 3 "" H 5500 3450 50  0001 C CNN
+	1    5500 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0102
+U 1 1 5EC575DC
+P 5500 1550
+F 0 "#PWR0102" H 5500 1400 50  0001 C CNN
+F 1 "VCC" H 5515 1723 50  0000 C CNN
+F 2 "" H 5500 1550 50  0001 C CNN
+F 3 "" H 5500 1550 50  0001 C CNN
+	1    5500 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 5EC57773
+P 7050 2600
+F 0 "C3" H 7165 2646 50  0000 L CNN
+F 1 "C" H 7165 2555 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 7088 2450 50  0001 C CNN
+F 3 "~" H 7050 2600 50  0001 C CNN
+	1    7050 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5EC58080
+P 3850 2350
+F 0 "C1" V 3598 2350 50  0000 C CNN
+F 1 "C" V 3689 2350 50  0000 C CNN
+F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 3888 2200 50  0001 C CNN
+F 3 "~" H 3850 2350 50  0001 C CNN
+	1    3850 2350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3350 2550 3350 2350
+Wire Wire Line
+	3350 2350 3650 2350
+Wire Wire Line
+	4000 2350 4050 2350
+Wire Wire Line
+	4050 2150 4050 2350
+Connection ~ 4050 2350
+Wire Wire Line
+	4050 2350 4450 2350
+Wire Wire Line
+	3650 2150 3650 2350
+Connection ~ 3650 2350
+Wire Wire Line
+	3650 2350 3700 2350
+Wire Wire Line
+	3650 1850 3650 1650
+Wire Wire Line
+	3650 1650 4050 1650
+Wire Wire Line
+	4050 1650 4050 1850
+Wire Wire Line
+	4050 1650 4450 1650
+Wire Wire Line
+	4450 1650 4450 1800
+Connection ~ 4050 1650
+Wire Wire Line
+	4450 1650 4700 1650
+Connection ~ 4450 1650
+Connection ~ 5500 1650
+Wire Wire Line
+	5500 1650 5500 1550
+Wire Wire Line
+	4700 1650 4700 2850
+Connection ~ 4700 1650
+Wire Wire Line
+	4700 1650 5500 1650
+Wire Wire Line
+	3350 2950 3350 3300
+Wire Wire Line
+	3350 3300 5500 3300
+Wire Wire Line
+	5500 3300 5500 3450
+Connection ~ 5500 3300
+Wire Wire Line
+	5500 3300 6500 3300
+Wire Wire Line
+	7050 3300 7050 2750
+Wire Wire Line
+	7050 2450 7050 1650
+Wire Wire Line
+	7050 1650 6500 1650
+Wire Wire Line
+	6500 1850 6500 1650
+Connection ~ 6500 1650
+Wire Wire Line
+	6500 1650 5500 1650
+Wire Wire Line
+	6500 2150 6500 2650
+Wire Wire Line
+	6500 2650 6500 2850
+Connection ~ 6500 2650
+$Comp
+L Device:C C2
+U 1 1 5EC5B965
+P 6500 3050
+F 0 "C2" H 6615 3096 50  0000 L CNN
+F 1 "C" H 6615 3005 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm" H 6538 2900 50  0001 C CNN
+F 3 "~" H 6500 3050 50  0001 C CNN
+	1    6500 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 2850 6500 2900
+Connection ~ 6500 2850
+Wire Wire Line
+	6500 3200 6500 3300
+Connection ~ 6500 3300
+Wire Wire Line
+	6500 3300 7050 3300
+Text HLabel 6000 2450 2    50   Output ~ 0
+CLK
+$Comp
+L Device:Jumper_NC_Dual JP1
+U 1 1 5ED07030
+P 4850 3650
+F 0 "JP1" H 4850 3889 50  0000 C CNN
+F 1 "Jumper_NC_Dual" H 4850 3798 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 4850 3650 50  0001 C CNN
+F 3 "~" H 4850 3650 50  0001 C CNN
+	1    4850 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 2200 4450 2350
+Wire Wire Line
+	6500 2650 6000 2650
+Wire Wire Line
+	6500 2850 6000 2850
+NoConn ~ 5000 2650
+Wire Wire Line
+	4700 2850 5000 2850
+Wire Wire Line
+	5500 2250 5500 1650
+Wire Wire Line
+	5500 3300 5500 3050
+$Comp
+L Timer:LM555xN U8
+U 1 1 5EC507D4
+P 5500 2650
+F 0 "U8" H 5500 3231 50  0000 C CNN
+F 1 "LM555xN" H 5500 3140 50  0000 C CNN
+F 2 "Package_DIP:DIP-8_W7.62mm" H 6150 2250 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm555.pdf" H 6350 2250 50  0001 C CNN
+	1    5500 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 2450 4850 2450
+Wire Wire Line
+	4850 2450 4850 3750
+Wire Wire Line
+	4600 2350 4450 2350
+Connection ~ 4450 2350
+Wire Wire Line
+	4600 3650 4600 2350
+$EndSCHEMATC
