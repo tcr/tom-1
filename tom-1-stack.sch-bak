@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 8 12
+Sheet 12 13
 Title ""
 Date ""
 Rev ""
@@ -15,8 +15,6 @@ Comment4 ""
 $EndDescr
 Text Notes 3000 1050 0    50   ~ 0
 STACK: SRAM (2K x 16) with 1.5K unused
-Wire Wire Line
-	4100 1750 4150 1750
 $Comp
 L Connector_Generic:Conn_02x08_Top_Bottom J?
 U 1 1 5ECB8E9C
@@ -246,10 +244,6 @@ Entry Wire Line
 	2250 4250 2350 4350
 Entry Wire Line
 	2250 4350 2350 4450
-Text GLabel 1600 3750 0    50   Input ~ 0
-stack[0..15]
-Text GLabel 5850 3750 2    50   Output ~ 0
-stack_bus[0..15]
 Text Label 4600 2450 2    50   ~ 0
 stack_bus7
 Text Label 4600 2550 2    50   ~ 0
@@ -299,35 +293,91 @@ stack1
 Text Label 2400 2450 0    50   ~ 0
 stack0
 Text Label 2400 3750 0    50   ~ 0
-stack15
+stack7
 Text Label 2400 3850 0    50   ~ 0
-stack14
+stack6
 Text Label 2400 3950 0    50   ~ 0
-stack13
+stack5
 Text Label 2400 4050 0    50   ~ 0
-stack12
+stack4
 Text Label 2400 4150 0    50   ~ 0
-stack11
+stack3
 Text Label 2400 4250 0    50   ~ 0
-stack10
+stack2
 Text Label 2400 4350 0    50   ~ 0
-stack9
+stack1
 Text Label 2400 4450 0    50   ~ 0
-stack8
+stack0
 Wire Wire Line
 	4150 1850 4550 1850
-Text GLabel 4550 1850 2    50   Output ~ 0
-stack_a8
 Wire Wire Line
 	4150 3850 4550 3850
-Text GLabel 4550 3850 2    50   Output ~ 0
-stack_a8
+Text HLabel 4450 3400 0    50   Input ~ 0
+a8
+Text HLabel 4450 1450 0    50   Input ~ 0
+a8
+Text HLabel 5850 3750 2    50   Output ~ 0
+stack_bus[0..15]
+Text HLabel 1600 3750 0    50   Input ~ 0
+stack[0..7]
+Wire Wire Line
+	4550 3850 4550 3400
+Wire Wire Line
+	4550 3400 4450 3400
+Wire Wire Line
+	4550 1850 4550 1450
+Wire Wire Line
+	4550 1450 4450 1450
+$Comp
+L power:VCC #PWR0170
+U 1 1 5EFF4D1D
+P 4150 1750
+F 0 "#PWR0170" H 4150 1600 50  0001 C CNN
+F 1 "VCC" H 4165 1923 50  0000 C CNN
+F 2 "" H 4150 1750 50  0001 C CNN
+F 3 "" H 4150 1750 50  0001 C CNN
+	1    4150 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDREF #PWR0171
+U 1 1 5EFF5019
+P 3350 2850
+F 0 "#PWR0171" H 3350 2600 50  0001 C CNN
+F 1 "GNDREF" H 3355 2677 50  0000 C CNN
+F 2 "" H 3350 2850 50  0001 C CNN
+F 3 "" H 3350 2850 50  0001 C CNN
+	1    3350 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR0172
+U 1 1 5EFF527C
+P 4150 3750
+F 0 "#PWR0172" H 4150 3600 50  0001 C CNN
+F 1 "VCC" H 4165 3923 50  0000 C CNN
+F 2 "" H 4150 3750 50  0001 C CNN
+F 3 "" H 4150 3750 50  0001 C CNN
+	1    4150 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDREF #PWR0173
+U 1 1 5EFF559A
+P 3350 4850
+F 0 "#PWR0173" H 3350 4600 50  0001 C CNN
+F 1 "GNDREF" H 3355 4677 50  0000 C CNN
+F 2 "" H 3350 4850 50  0001 C CNN
+F 3 "" H 3350 4850 50  0001 C CNN
+	1    3350 4850
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
-	2250 3750 2250 5650
+	2250 3750 2250 4350
 Wire Bus Line
-	2250 1550 2250 3750
+	2250 1650 2250 3750
 Wire Bus Line
-	5200 3750 5200 5650
+	5200 3750 5200 5250
 Wire Bus Line
-	5200 1500 5200 3750
+	5200 2550 5200 3750
 $EndSCHEMATC

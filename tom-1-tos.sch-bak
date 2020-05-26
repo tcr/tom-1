@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 7 12
+Sheet 6 13
 Title ""
 Date ""
 Rev ""
@@ -52,9 +52,6 @@ F 3 "~" H 7050 1550 50  0001 C CNN
 	1    7050 1550
 	1    0    0    -1  
 $EndComp
-Wire Bus Line
-	2250 3150 1200 3150
-Connection ~ 2250 3150
 Entry Wire Line
 	2250 1350 2350 1450
 Entry Wire Line
@@ -151,8 +148,6 @@ Text Label 2400 4550 0    50   ~ 0
 tos_bus14
 Text Label 2400 4650 0    50   ~ 0
 tos_bus15
-Text GLabel 1200 3150 0    50   Input ~ 0
-tos_bus[0..15]
 $Comp
 L power:GNDREF #PWR0103
 U 1 1 5EC9A318
@@ -175,8 +170,6 @@ F 3 "" H 3300 5250 50  0001 C CNN
 	1    3300 5250
 	1    0    0    -1  
 $EndComp
-Wire Bus Line
-	2250 3150 2250 3200
 $Comp
 L power:VCC #PWR0105
 U 1 1 5EC9D942
@@ -213,9 +206,6 @@ Entry Wire Line
 	4300 1950 4400 2050
 Entry Wire Line
 	4300 2050 4400 2150
-Wire Bus Line
-	4400 3150 5950 3150
-Connection ~ 4400 3150
 Wire Wire Line
 	4300 1450 3800 1450
 Wire Wire Line
@@ -298,14 +288,16 @@ Text Label 4000 4550 0    50   ~ 0
 tos14
 Text Label 4000 4650 0    50   ~ 0
 tos15
-Text GLabel 5950 3150 2    50   Output ~ 0
+Wire Bus Line
+	2250 1350 1800 1350
+Text HLabel 1800 1350 0    50   Input ~ 0
+tos_bus[0..15]
+Text HLabel 4850 4750 2    50   Output ~ 0
 tos[0..15]
 Wire Bus Line
-	4400 3150 4400 4750
+	4400 4750 4850 4750
 Wire Bus Line
-	4400 1550 4400 3150
+	2250 1350 2250 4550
 Wire Bus Line
-	2250 1350 2250 3150
-Wire Bus Line
-	2250 3150 2250 4550
+	4400 1550 4400 4750
 $EndSCHEMATC
