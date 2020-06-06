@@ -233,4 +233,8 @@ Text HLabel 2800 2600 0    50   Input ~ 0
 stack_bus[0..15]
 Wire Bus Line
 	3250 2600 3250 3550
+Text HLabel 4050 3850 0    50   Input ~ 0
+a_to_b
+Text HLabel 4050 3950 0    50   Input ~ 0
+chip_enable
 $EndSCHEMATC

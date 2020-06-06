@@ -300,4 +300,12 @@ Wire Bus Line
 	2650 1850 2650 5050
 Wire Bus Line
 	4800 2050 4800 5250
+Text HLabel 3200 2850 0    50   Input ~ 0
+clk
+Text HLabel 3200 5350 0    50   Input ~ 0
+clk
+Text HLabel 3200 2950 0    50   Input ~ 0
+~clock_enable
+Text HLabel 3200 5450 0    50   Input ~ 0
+~clock_enable
 $EndSCHEMATC

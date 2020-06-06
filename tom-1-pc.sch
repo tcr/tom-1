@@ -166,11 +166,7 @@ F 3 "" H 3650 1100 50  0001 C CNN
 	1    3650 1100
 	1    0    0    -1  
 $EndComp
-Wire Bus Line
-	6550 1000 6550 3900
-Connection ~ 6550 3900
-Wire Bus Line
-	6550 3900 6550 7000
+Connection ~ 6650 3900
 Wire Bus Line
 	1900 4300 1300 4300
 Entry Wire Line
@@ -337,8 +333,6 @@ Wire Wire Line
 	2000 3200 3950 3200
 Text HLabel 3150 2100 0    50   Input ~ 0
 up
-Text HLabel 3150 2200 0    50   Input ~ 0
-down
 $Comp
 L power:GNDREF #PWR0162
 U 1 1 5EE320AF
@@ -385,17 +379,17 @@ F 3 "" H 3900 7450 50  0001 C CNN
 $EndComp
 Text HLabel 1300 4300 0    50   Input ~ 0
 rom[0..15]
-Text HLabel 7000 3900 2    50   Output ~ 0
+Text HLabel 7100 3900 2    50   Output ~ 0
 pc[0..15]
 Connection ~ 1900 4300
 Text HLabel 3950 3700 0    50   Input ~ 0
-load
+~load
 Text HLabel 3150 1900 0    50   Input ~ 0
-load
+~load
 Text HLabel 3100 5550 0    50   Input ~ 0
-load
+~load
 Text HLabel 3900 7050 0    50   Input ~ 0
-load
+~load
 Wire Wire Line
 	3900 7350 3900 7450
 Connection ~ 3900 7450
@@ -457,9 +451,48 @@ NoConn ~ 4100 5750
 NoConn ~ 4900 7250
 NoConn ~ 4900 7050
 Wire Bus Line
-	6550 3900 7000 3900
+	6650 3900 7100 3900
+Entry Wire Line
+	6550 1400 6650 1500
+Entry Wire Line
+	6550 1500 6650 1600
+Entry Wire Line
+	6550 1600 6650 1700
+Entry Wire Line
+	6550 1700 6650 1800
+Entry Wire Line
+	6550 3200 6650 3300
+Entry Wire Line
+	6550 3300 6650 3400
+Entry Wire Line
+	6550 3400 6650 3500
+Entry Wire Line
+	6550 3500 6650 3600
+Entry Wire Line
+	6550 5050 6650 5150
+Entry Wire Line
+	6550 5150 6650 5250
+Entry Wire Line
+	6550 5250 6650 5350
+Entry Wire Line
+	6550 5350 6650 5450
+Entry Wire Line
+	6550 6550 6650 6650
+Entry Wire Line
+	6550 6650 6650 6750
+Entry Wire Line
+	6550 6750 6650 6850
+Entry Wire Line
+	6550 6850 6650 6950
+Wire Wire Line
+	3150 2200 3150 2300
+Wire Bus Line
+	6650 1000 6650 3900
+Wire Bus Line
+	6650 3900 6650 7000
 Wire Bus Line
 	1900 4300 1900 7300
 Wire Bus Line
 	1900 850  1900 4300
+Connection ~ 3150 2300
 $EndSCHEMATC

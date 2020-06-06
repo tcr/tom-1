@@ -176,7 +176,7 @@ tos15
 Text HLabel 2900 2150 0    50   Input ~ 0
 tos[0..15]
 Text HLabel 8700 3500 2    50   Output ~ 0
-jump0
+~jump0
 Wire Bus Line
 	3550 2150 3550 4200
 $EndSCHEMATC

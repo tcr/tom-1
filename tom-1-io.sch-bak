@@ -180,7 +180,7 @@ F 3 "" H 4550 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Bus Line
-	3250 3400 2800 3400
+	3250 2600 2800 2600
 Wire Wire Line
 	4050 2950 3350 2950
 Wire Wire Line
@@ -197,7 +197,6 @@ Wire Wire Line
 	4050 3550 3350 3550
 Wire Wire Line
 	4050 3650 3350 3650
-Connection ~ 3250 3400
 Entry Wire Line
 	3250 2850 3350 2950
 Entry Wire Line
@@ -230,10 +229,12 @@ Text Label 3500 3550 0    50   ~ 0
 stack_bus6
 Text Label 3500 3650 0    50   ~ 0
 stack_bus7
-Text HLabel 2800 3400 0    50   Input ~ 0
+Text HLabel 2800 2600 0    50   Input ~ 0
 stack_bus[0..15]
 Wire Bus Line
-	3250 3400 3250 4750
-Wire Bus Line
-	3250 2100 3250 3400
+	3250 2600 3250 3550
+Text HLabel 4050 3850 0    50   Input ~ 0
+a_to_b
+Text HLabel 4050 3950 0    50   Input ~ 0
+chip_enable
 $EndSCHEMATC

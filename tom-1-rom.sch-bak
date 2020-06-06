@@ -248,10 +248,10 @@ Wire Wire Line
 Wire Wire Line
 	3150 4250 3150 4500
 $Comp
-L Connector:Conn_01x01_Male A8
+L Connector:Conn_01x01_Male PGM1
 U 1 1 5EE65DAF
 P 2950 4500
-F 0 "A8" H 3058 4681 50  0000 C CNN
+F 0 "PGM1" H 3058 4681 50  0000 C CNN
 F 1 "Conn_01x01_Male" H 3058 4590 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2950 4500 50  0001 C CNN
 F 3 "~" H 2950 4500 50  0001 C CNN

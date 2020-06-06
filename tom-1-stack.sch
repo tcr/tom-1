@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 12 13
+Sheet 11 13
 Title ""
 Date ""
 Rev ""
@@ -340,6 +340,41 @@ F 3 "" H 3350 4850 50  0001 C CNN
 	1    3350 4850
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	4150 1950 4800 1950
+$Comp
+L power:GNDREF #PWR0109
+U 1 1 5ED133B0
+P 4800 2250
+F 0 "#PWR0109" H 4800 2000 50  0001 C CNN
+F 1 "GNDREF" H 4805 2077 50  0000 C CNN
+F 2 "" H 4800 2250 50  0001 C CNN
+F 3 "" H 4800 2250 50  0001 C CNN
+	1    4800 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 3950 4750 3950
+$Comp
+L power:GNDREF #PWR0110
+U 1 1 5ED14CD4
+P 4750 4250
+F 0 "#PWR0110" H 4750 4000 50  0001 C CNN
+F 1 "GNDREF" H 4755 4077 50  0000 C CNN
+F 2 "" H 4750 4250 50  0001 C CNN
+F 3 "" H 4750 4250 50  0001 C CNN
+	1    4750 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 2250 4800 2250
+Wire Wire Line
+	4800 2250 4800 1950
+Connection ~ 4800 2250
+Wire Wire Line
+	4750 3950 4750 4250
+Wire Wire Line
+	4750 4250 4150 4250
 Wire Bus Line
 	2250 3750 2250 4350
 Wire Bus Line
@@ -348,4 +383,17 @@ Wire Bus Line
 	5200 3750 5200 5250
 Wire Bus Line
 	5200 2550 5200 3750
+Connection ~ 4750 4250
+Text HLabel 4150 2050 2    50   Input ~ 0
+~write_enable
+Text HLabel 4150 4050 2    50   Input ~ 0
+~write_enable
+Text HLabel 4150 4150 2    50   Input ~ 0
+~output_enable
+Text HLabel 4150 2150 2    50   Input ~ 0
+~output_enable
+Text HLabel 4150 2350 2    50   Input ~ 0
+~chip_select
+Text HLabel 4150 4350 2    50   Input ~ 0
+~chip_select
 $EndSCHEMATC

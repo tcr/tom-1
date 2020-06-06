@@ -702,6 +702,11 @@ Wire Wire Line
 	3250 4700 2150 4700
 Wire Wire Line
 	4350 5050 4350 4700
+Connection ~ 4350 4700
+Wire Wire Line
+	4350 4700 3250 4700
+Text HLabel 1650 4700 0    50   Input ~ 0
+enable
 Wire Bus Line
 	8300 850  8300 3300
 Wire Bus Line
@@ -719,16 +724,11 @@ Wire Bus Line
 Wire Bus Line
 	4250 1000 4250 3500
 Wire Bus Line
-	4350 850  4350 3250
-Wire Bus Line
 	4050 1350 4050 3900
 Wire Bus Line
 	2050 1000 2050 3550
 Wire Bus Line
 	2300 850  2300 3250
-Connection ~ 4350 4700
-Wire Wire Line
-	4350 4700 3250 4700
-Text HLabel 1650 4700 0    50   Input ~ 0
-enable
+Wire Bus Line
+	4350 850  4350 3250
 $EndSCHEMATC

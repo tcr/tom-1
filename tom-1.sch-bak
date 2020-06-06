@@ -14,12 +14,12 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 600  2750 800  2200
+S 500  1250 800  2200
 U 5EEB51A0
 F0 "Power/Clock" 50
 F1 "tom-1-clock.sch" 50
-F2 "clk" O R 1400 2900 50 
-F3 "clk_bar" O R 1400 3050 50 
+F2 "clk" O R 1300 1400 50 
+F3 "~clk" O R 1300 1550 50 
 $EndSheet
 $Sheet
 S 7150 1600 1450 600 
@@ -30,14 +30,14 @@ F2 "tos[0..15]" I L 7150 1850 50
 F3 "jump0" O R 8600 1850 50 
 $EndSheet
 $Sheet
-S 7150 4000 1450 1050
+S 7150 4400 1450 1050
 U 5EC3E773
 F0 "NAND" 50
 F1 "tom-1-nand.sch" 50
-F2 "tos_bus[0..15]" O R 8600 4500 50 
-F3 "stack[0..15]" I L 7150 4700 50 
-F4 "tos[0..15]" I L 7150 4350 50 
-F5 "enable" I L 7150 4150 50 
+F2 "tos_bus[0..15]" O R 8600 4900 50 
+F3 "stack[0..15]" I L 7150 5100 50 
+F4 "tos[0..15]" I L 7150 4750 50 
+F5 "enable" I L 7150 5250 50 
 $EndSheet
 $Sheet
 S 9450 4600 1500 850 
@@ -45,6 +45,8 @@ U 5ECB2A45
 F0 "I/O" 50
 F1 "tom-1-io.sch" 50
 F2 "stack_bus[0..15]" I L 9450 4900 50 
+F3 "a_to_b" I L 9450 5100 50 
+F4 "chip_enable" I L 9450 5250 50 
 $EndSheet
 $Sheet
 S 3750 5200 1450 600 
@@ -53,6 +55,8 @@ F0 "TOS" 50
 F1 "tom-1-tos.sch" 50
 F2 "tos_bus[0..15]" I L 3750 5400 50 
 F3 "tos[0..15]" O R 5200 5400 50 
+F4 "clk" I L 3750 5550 50 
+F5 "~clock_enable" I L 3750 5700 50 
 $EndSheet
 $Sheet
 S 7150 2550 1450 1100
@@ -80,19 +84,9 @@ U 5ECC038F
 F0 "Program Counter" 50
 F1 "tom-1-pc.sch" 50
 F2 "up" I L 3000 1900 50 
-F3 "down" I L 3000 2000 50 
-F4 "rom[0..15]" I L 3000 1700 50 
-F5 "pc[0..15]" O R 4450 1750 50 
-F6 "load" I L 3000 2100 50 
-$EndSheet
-$Sheet
-S 3000 3700 1450 850 
-U 5EC5C6EC
-F0 "D/R Registers" 50
-F1 "tom-1-dr_registers.sch" 50
-F2 "stack[0..7]" O R 4450 4150 50 
-F3 "~d_enable" I L 3000 3900 50 
-F4 "~r_enable" I L 3000 4100 50 
+F3 "rom[0..15]" I L 3000 1700 50 
+F4 "pc[0..15]" O R 4450 1750 50 
+F5 "~load" I L 3000 2100 50 
 $EndSheet
 $Comp
 L Device:C C5
@@ -648,13 +642,16 @@ F5 "~output_enable~" I L 9450 3300 50
 F6 "~chip_enable~" I L 9450 3450 50 
 $EndSheet
 $Sheet
-S 4750 3700 1450 850 
+S 4750 3350 1450 1050
 U 5ECB89A1
 F0 "Stack" 50
 F1 "tom-1-stack.sch" 50
-F2 "a8" I L 4750 3900 50 
-F3 "stack_bus[0..15]" O R 6200 4150 50 
-F4 "stack[0..7]" I L 4750 4150 50 
+F2 "a8" I L 4750 3550 50 
+F3 "stack_bus[0..15]" O R 6200 3800 50 
+F4 "stack[0..7]" I L 4750 3800 50 
+F5 "~write_enable" I L 4750 4000 50 
+F6 "~output_enable" I L 4750 4150 50 
+F7 "~chip_select" I L 4750 4300 50 
 $EndSheet
 Wire Bus Line
 	8600 2950 8850 2950
@@ -667,25 +664,18 @@ Wire Bus Line
 Wire Bus Line
 	7150 2950 6500 2950
 Wire Bus Line
-	6500 2950 6500 4350
-Wire Bus Line
-	6500 4350 7150 4350
+	6500 4750 7150 4750
 Connection ~ 6500 2950
 Wire Bus Line
 	6950 3200 7150 3200
 Wire Bus Line
-	7150 4700 6950 4700
-Connection ~ 6950 4700
+	7150 5100 6950 5100
 Wire Bus Line
 	6500 1850 7150 1850
 Wire Bus Line
 	6950 5650 9050 5650
 Wire Bus Line
-	8850 4500 8600 4500
-Wire Bus Line
 	9450 4900 9050 4900
-Wire Bus Line
-	8850 2950 8850 4500
 Connection ~ 8850 2950
 Wire Bus Line
 	8850 2950 9450 2950
@@ -694,12 +684,7 @@ Wire Bus Line
 Wire Bus Line
 	6500 1850 6500 2950
 Wire Bus Line
-	6950 4700 6950 5650
-Wire Bus Line
-	6500 4350 6500 5400
-Wire Bus Line
 	5200 5400 6500 5400
-Connection ~ 6500 4350
 Wire Bus Line
 	4450 1750 4750 1750
 Wire Bus Line
@@ -721,36 +706,195 @@ Wire Wire Line
 Wire Wire Line
 	2650 2100 3000 2100
 Wire Bus Line
-	8850 4500 8850 6100
-Wire Bus Line
 	8850 6100 3300 6100
 Wire Bus Line
 	3300 6100 3300 5400
-Connection ~ 8850 4500
 Connection ~ 9050 4900
 Wire Bus Line
 	9050 4900 9050 5650
 Wire Bus Line
 	9050 4000 9050 4900
 Wire Bus Line
-	4750 4150 4450 4150
+	4750 3800 4450 3800
 Wire Bus Line
-	6200 4150 6950 4150
+	6200 3800 6950 3800
 Wire Bus Line
-	6950 3200 6950 4150
+	6950 3200 6950 3800
 Wire Wire Line
-	1700 3050 1400 3050
+	1750 1550 1600 1550
 $Sheet
-S 1700 2750 800  2200
+S 1750 1250 800  2200
 U 5F194744
 F0 "Control" 50
 F1 "tom-1-ctrl.sch" 50
-F2 "output_enable" I L 1700 2900 50 
-F3 "latch_enable" I L 1700 3050 50 
+F2 "output_enable" I L 1750 1400 50 
+F3 "latch_enable" I L 1750 1550 50 
 $EndSheet
 Wire Wire Line
 	9000 1000 2650 1000
-Connection ~ 6950 4150
+Connection ~ 6950 3800
+Wire Wire Line
+	7150 2700 2750 2700
+Connection ~ 6500 4750
 Wire Bus Line
-	6950 4150 6950 4700
+	6500 4750 6500 5400
+Connection ~ 6950 5100
+Wire Bus Line
+	6950 5100 6950 5650
+Wire Bus Line
+	6500 2950 6500 4750
+Wire Bus Line
+	6950 3800 6950 5100
+Wire Wire Line
+	3750 5550 1600 5550
+Wire Wire Line
+	1600 5550 1600 1550
+Connection ~ 1600 1550
+Wire Wire Line
+	1600 1550 1300 1550
+Wire Wire Line
+	3000 1900 2900 1900
+Wire Wire Line
+	2900 1900 2900 2300
+Wire Wire Line
+	2900 2300 2750 2300
+Wire Wire Line
+	4750 2000 4550 2000
+Wire Wire Line
+	4550 2000 4550 2450
+Wire Wire Line
+	4550 2450 2750 2450
+Wire Wire Line
+	4750 2150 4650 2150
+Wire Wire Line
+	4650 2150 4650 2550
+Wire Wire Line
+	4650 2550 2750 2550
+Wire Wire Line
+	4750 3550 4700 3550
+Wire Wire Line
+	4700 3550 4700 2750
+Wire Wire Line
+	4700 2750 2750 2750
+Wire Wire Line
+	4750 4000 4650 4000
+Wire Wire Line
+	4650 4000 4650 2800
+Wire Wire Line
+	4650 2800 2750 2800
+Wire Wire Line
+	4750 4150 4600 4150
+Wire Wire Line
+	4600 4150 4600 2850
+Wire Wire Line
+	2750 2850 4600 2850
+Wire Wire Line
+	4750 4300 4550 4300
+Wire Wire Line
+	4550 4300 4550 2900
+Wire Wire Line
+	4550 2900 2750 2900
+Wire Wire Line
+	3750 5700 3000 5700
+Wire Wire Line
+	9450 3150 8700 3150
+Wire Wire Line
+	8700 3150 8700 3900
+Wire Wire Line
+	8700 3900 6600 3900
+Wire Wire Line
+	6600 3900 6600 4550
+Wire Wire Line
+	6600 4550 2850 4550
+Wire Wire Line
+	9450 3300 8750 3300
+Wire Wire Line
+	8750 3300 8750 3950
+Wire Wire Line
+	8750 3950 6650 3950
+Wire Wire Line
+	6650 3950 6650 4600
+Wire Wire Line
+	6650 4600 2850 4600
+Wire Wire Line
+	9450 3450 8800 3450
+Wire Wire Line
+	8800 3450 8800 4000
+Wire Wire Line
+	8800 4000 6700 4000
+Wire Wire Line
+	6700 4000 6700 4650
+Wire Wire Line
+	6700 4650 2850 4650
+Wire Wire Line
+	3000 5700 3000 5100
+Wire Wire Line
+	3000 5100 2850 5100
+Wire Wire Line
+	7150 5250 6700 5250
+Wire Wire Line
+	6700 5250 6700 4900
+Wire Wire Line
+	6700 4900 2850 4900
+Wire Wire Line
+	3000 3250 2900 3250
+Wire Wire Line
+	2900 3250 2900 3050
+Wire Wire Line
+	2900 3050 2750 3050
+Wire Wire Line
+	3000 3450 2850 3450
+Wire Wire Line
+	2850 3450 2850 3100
+Wire Wire Line
+	2850 3100 2750 3100
+Wire Bus Line
+	8600 4900 8850 4900
+Connection ~ 8850 4900
+Wire Bus Line
+	8850 4900 8850 6100
+Wire Bus Line
+	8850 2950 8850 4900
+$Sheet
+S 3000 3050 1450 1350
+U 5EC5C6EC
+F0 "D/R Registers" 50
+F1 "tom-1-dr_registers.sch" 50
+F2 "stack[0..7]" O R 4450 3800 50 
+F3 "~d_enable" I L 3000 3250 50 
+F4 "~r_enable" I L 3000 3450 50 
+F5 "d_U_~D" I L 3000 3650 50 
+F6 "r_U_~D" I L 3000 3750 50 
+F7 "clk" I L 3000 3850 50 
+F8 "d_rck" I L 3000 3950 50 
+F9 "r_rck" I L 3000 4050 50 
+F10 "~d_output_enable" I L 3000 4150 50 
+F11 "~r_output_enable" I L 3000 4250 50 
+$EndSheet
+Wire Wire Line
+	9450 5100 9150 5100
+Wire Wire Line
+	9150 5100 9150 6000
+Wire Wire Line
+	9150 6000 2850 6000
+Wire Wire Line
+	9450 5250 9250 5250
+Wire Wire Line
+	9250 5250 9250 6050
+Wire Wire Line
+	9250 6050 2850 6050
+Wire Wire Line
+	3000 3650 2750 3650
+Wire Wire Line
+	3000 3750 2750 3750
+Wire Wire Line
+	3000 3850 2750 3850
+Wire Wire Line
+	3000 3950 2750 3950
+Wire Wire Line
+	3000 4050 2750 4050
+Wire Wire Line
+	3000 4150 2750 4150
+Wire Wire Line
+	3000 4250 2750 4250
 $EndSCHEMATC

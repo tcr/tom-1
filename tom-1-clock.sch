@@ -252,9 +252,9 @@ F 3 "~" H 8750 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8550 2100 8100 2100
+	8550 2100 8400 2100
 Wire Wire Line
-	8550 2200 8100 2200
+	8550 2200 8400 2200
 $Comp
 L power:GNDREF #PWR?
 U 1 1 5ED44395
@@ -466,5 +466,47 @@ F 3 "" H 4000 5050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text HLabel 4600 5500 2    50   Output ~ 0
-clk_bar
+~clk
+Wire Wire Line
+	8400 2100 8400 1700
+Wire Wire Line
+	8400 1700 7700 1700
+Wire Wire Line
+	7700 1700 7700 1850
+Wire Wire Line
+	7700 2700 8400 2700
+Wire Wire Line
+	8400 2700 8400 2200
+Connection ~ 8400 2100
+Wire Wire Line
+	8400 2100 8100 2100
+Connection ~ 8400 2200
+Wire Wire Line
+	8400 2200 8100 2200
+$Comp
+L Device:LED D2
+U 1 1 5F1F53C9
+P 7700 2000
+F 0 "D2" V 7739 1882 50  0000 R CNN
+F 1 "LED" V 7648 1882 50  0000 R CNN
+F 2 "LED_THT:LED_D3.0mm" H 7700 2000 50  0001 C CNN
+F 3 "~" H 7700 2000 50  0001 C CNN
+	1    7700 2000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7700 2150 7700 2300
+$Comp
+L Device:R R9
+U 1 1 5F1F6242
+P 7700 2450
+F 0 "R9" H 7770 2496 50  0000 L CNN
+F 1 "R" H 7770 2405 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P1.90mm_Vertical" V 7630 2450 50  0001 C CNN
+F 3 "~" H 7700 2450 50  0001 C CNN
+	1    7700 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7700 2600 7700 2700
 $EndSCHEMATC
