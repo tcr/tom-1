@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - TOM-1 Signals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <style>
+
+body { transform: scale(0.7);
+transform-origin: left top; }
+
+
+hi::before {
+  color: #090;
+  font-weight: bold;
+  content: "HI";
+  display: block;
+  margin: 12px 0;
+  font-size: 20px;
+  font-family: Helvetica Neue;
+}
+
+lo::before {
+  color: #333;
+  font-weight: bold;
+  content: "LO";
+  display: block;
+  margin: 12px 0;
+  font-size: 20px;
+  font-family: Helvetica Neue;
+}
+
+over {
+  text-decoration: overline;
+}
+
+th, td {
+  border: 1px solid #aaa;
+}
+
+th {
+  font-weight: bold;
+  text-align: center;
+  padding: 14px;
+  vertical-align: middle;
+}
+
+td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 14px;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 100;
+  padding: 20px 50px;
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 2em 0 1em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+th:not([signal]) ~ td {
+  background-color: #e0eeff;
+}
+
+td[na] {
+  background-color: #ddd !important;
+}
+
+na::before { content: "n/a"; }
+
+
+th[colspan] { vertical-align: bottom; font-size: 20px; height: 50px; border: none; }
+
+  </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body ng-app="app">
+  <h3>TOM-1 SIGNALS</h3>
+  <table>
+    <tr>
+      <th signal>Signal</th>
+      <th>PushLiteral</th>
+      <th>Add</th>
+      <th>Nand</th>
+      <th>Load</th>
+      <th>Store</th>
+      <th>ReturnPop</th>
+      <th>ReturnPush</th>
+      <th>JumpIf</th>
+    </tr>
+
+    <tr>
+      <th signal>clk</th>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal><over>clk</over></th>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal>pulse</th>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+    </tr>
+
+
+    <tr>
+      <th colspan="9" style="text-align: left">Program Counter</th>
+    </tr>
+
+    <tr>
+      <th signal>pc_up</th>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+    </tr>
+
+
+    <tr>
+      <th signal><over>pc_load</over></th>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal>ctrl</th>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+    </tr>
+
+
+    <tr>
+      <th colspan="9" style="text-align: left">ADD/NAND</th>
+    </tr>
+
+    <tr>
+      <th>add_enable</th>
+      <td><lo /></td>
+      <td><hi /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><hi /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+    </tr>
+
+    <tr>
+      <th>nand_enable</th>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><hi /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+    </tr>
+
+    <tr>
+      <th colspan="9" style="text-align: left">ROM</th>
+    </tr>
+
+    <tr>
+      <th signal><over>rom_output_enable</over></th>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th><over>rom_chip_enable</over></th>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+    </tr>
+
+
+    <tr>
+      <th colspan="9" style="text-align: left">TOS</th>
+    </tr>
+
+    <tr>
+      <th signal>tos_clk</th>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal-><over>tos_clear</over></th>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th colspan="9" style="text-align: left">D, R Registers</th>
+    </tr>
+
+    <tr>
+      <th>regs</th>
+      <td><table><tr><td>D+</td><td>&nbsp;&nbsp;</td></table></td>
+      <td><table><tr><td>&nbsp;&nbsp;</td><td>D-</td></table></td>
+      <td><table><tr><td>&nbsp;&nbsp;</td><td>D-</td></table></td>
+      <td><table><tr><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></table></td>
+      <td><table><tr><td>D-</td><td>D-</td></table></td>
+      <td><table><tr><td>D+</td><td>R-</td></table></td>
+      <td><table><tr><td>R+</td><td>D-</td></table></td>
+      <td><table><tr><td>&nbsp;&nbsp;</td><td>D-</td></table></td>
+    </tr>
+
+    <tr>
+      <th signal><over>d_enable</over></th>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal>d_rck</th>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0,0,0,1]"></uv-signal></td>
+      <td na>n/a</td>
+      <td><uv-signal data="[0,0,0,0,0,0,1,1,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0,0,0,1]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th>d_up_down</th>
+      <td><lo /></td>
+      <td><hi /></td>
+      <td><hi /></td>
+      <td na>n/a</td>
+      <td><hi /></td>
+      <td><lo /></td>
+      <td><hi /></td>
+      <td><hi /></td>
+    </tr>
+
+    <tr>
+      <th signal><over>r_enable</over> / a8</th>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal>r_rck</th>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td><uv-signal data="[0,0,0,0,0,0,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td na>n/a</td>
+    </tr>
+
+    <tr>
+      <th>r_up_down</th>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td na>n/a</td>
+      <td><hi /></td>
+      <td><lo /></td>
+      <td na>n/a</td>
+    </tr>
+
+    <tr>
+      <th colspan="9" style="text-align: left">STACK</th>
+    </tr>
+
+    <tr>
+      <th><over>stack_chip_enable</over></th>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+    </tr>
+
+
+    <tr>
+      <th signal><over>stack_write_enable</over></th>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+    </tr>
+
+    <tr>
+      <th signal><over>stack_output_enable</over></th>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+      <td><uv-signal data="[1,1,0,0]"></uv-signal></td>
+    </tr>
+
+
+    <tr>
+      <th colspan="9" style="text-align: left">RAM</th>
+    </tr>
+
+    <tr>
+      <th><over>ram_output_enable</over></th>
+      <td><hi /></td>
+      <td><hi /></td>
+      <td><hi /></td>
+      <td><lo /></td>
+      <td><hi /></td>
+      <td><hi /></td>
+      <td><hi /></td>
+      <td><hi /></td>
+    </tr>
+
+    <tr>
+      <th signal><over>ram_write_enable</over></th>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[0,0,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+      <td><uv-signal data="[1,1,1,1]"></uv-signal></td>
+    </tr>
+
+
+    <tr>
+      <th><over>ram_chip_enable</over></th>
+      <td na><na /></td>
+      <td na><na /></td>
+      <td na><na /></td>
+      <td><lo /></td>
+      <td><lo /></td>
+      <td na><na /></td>
+      <td na><na /></td>
+      <td na><na /></td>
+    </tr>
+  </table>
+</body>
+<!-- partial -->
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js'></script>
+<script src='https://d3js.org/d3.v3.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
