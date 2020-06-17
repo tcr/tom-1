@@ -1,4 +1,4 @@
-D_OE = 1
+TOS_DISABLE = 1
 R_OE = 2
 DR_UnD = 4
 STACK_W_nR = 8
@@ -6,6 +6,11 @@ D_REG_AND_CCK_D = 16
 TOS_BUS_SEL_1 = 32
 TOS_BUS_SEL_2 = 64
 JUMPIF0 = 128
+
+TOS_BUS_ROM = 0
+TOS_BUS_RAM = TOS_BUS_SEL_1
+TOS_BUS_ADD = TOS_BUS_SEL_2
+TOS_BUS_NAND = TOS_BUS_SEL_1 | TOS_BUS_SEL_2
 
 """
 some comments on pin inputs:
@@ -32,35 +37,51 @@ def writeh(code_a, code_b, arg):
 
 def push_literal(arg):
   writeh(
-    D_OE | DR_UnD | STACK_W_nR,
-    D_OE | DR_UnD | STACK_W_nR,
+    DR_UnD | STACK_W_nR,
+    DR_UnD | STACK_W_nR,
     arg
   )
 
 def jump_if_0(arg):
   writeh(
-    D_OE | D_REG_AND_CCK_D | JUMPIF0,
-    D_OE | D_REG_AND_CCK_D | JUMPIF0,
+    D_REG_AND_CCK_D | JUMPIF0,
+    D_REG_AND_CCK_D | JUMPIF0,
     arg,
+  )
+
+def add():
+  writeh(
+    0x0,
+    TOS_BUS_ADD,
+    0x0000
   )
 
 def nand():
   writeh(
-    D_OE | TOS_BUS_SEL_2,
-    D_OE | TOS_BUS_SEL_2,
+    0x0,
+    TOS_BUS_NAND,
     0x0000
   )
 
 def store():
   writeh(
-    D_OE | TOS_BUS_SEL_1,
-    D_OE | TOS_BUS_SEL_1 | TOS_BUS_SEL_2,
+    TOS_BUS_RAM,
+    TOS_DISABLE | TOS_BUS_ADD,
+    0x0000
+  )
+
+def load():
+  writeh(
+    TOS_BUS_RAM | DR_UnD | STACK_W_nR,
+    TOS_DISABLE | TOS_BUS_ADD,
     0x0000
   )
 
 start()
 push_literal(0xcafe)
-push_literal(0x0000)
+push_literal(0xffef)
+push_literal(0xffff)
+nand()
 store()
 push_literal(0x0000)
 jump_if_0(0x0000)
