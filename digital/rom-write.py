@@ -2,7 +2,7 @@ TOS_DISABLE = 1
 R_OE = 2
 DR_UnD = 4
 STACK_W_nR = 8
-D_REG_AND_CCK_D = 16
+CCK = 16
 TOS_BUS_SEL_1 = 32
 TOS_BUS_SEL_2 = 64
 JUMPIF0 = 128
@@ -37,54 +37,126 @@ def writeh(code_a, code_b, arg):
 
 def push_literal(arg):
   writeh(
-    DR_UnD | STACK_W_nR,
-    DR_UnD | STACK_W_nR,
+    TOS_BUS_ROM | CCK | DR_UnD | STACK_W_nR,
+    TOS_BUS_ROM | DR_UnD | STACK_W_nR,
     arg
   )
 
 def jump_if_0(arg):
   writeh(
-    D_REG_AND_CCK_D | JUMPIF0,
-    D_REG_AND_CCK_D | JUMPIF0,
+    TOS_BUS_ROM | CCK,
+    TOS_BUS_ROM | JUMPIF0,
     arg,
   )
 
 def add():
   writeh(
-    0x0,
+    TOS_BUS_ROM | CCK,
     TOS_BUS_ADD,
     0x0000
   )
 
 def nand():
   writeh(
-    0x0,
+    TOS_BUS_ROM | CCK,
     TOS_BUS_NAND,
     0x0000
   )
 
 def store():
   writeh(
-    TOS_BUS_RAM,
-    TOS_DISABLE | TOS_BUS_ADD,
+    TOS_BUS_RAM | CCK,
+    TOS_BUS_ADD | TOS_DISABLE,
     0x0000
   )
 
 def load():
   writeh(
-    TOS_BUS_RAM | DR_UnD | STACK_W_nR,
-    TOS_DISABLE | TOS_BUS_ADD,
+    TOS_BUS_RAM | CCK | DR_UnD | STACK_W_nR,
+    TOS_BUS_ADD | CCK | TOS_DISABLE,
     0x0000
   )
 
+def drop():
+  writeh(
+    TOS_BUS_ROM | CCK,
+    TOS_BUS_ADD | TOS_DISABLE,
+    0x0000
+  )
+
+def return_push():
+  writeh(
+    TOS_BUS_ROM | CCK | STACK_W_nR,
+    TOS_BUS_ADD | CCK | R_OE | TOS_DISABLE | DR_UnD,
+    0x0000
+  )
+
+def return_pop():
+  writeh(
+    TOS_BUS_ROM | CCK | R_OE | STACK_W_nR,
+    TOS_BUS_ADD | CCK | TOS_DISABLE | DR_UnD,
+    0x0000
+  )
+
+def noop():
+  writeh(
+    TOS_BUS_ROM | CCK | STACK_W_nR | DR_UnD,
+    TOS_BUS_ADD | CCK | TOS_DISABLE,
+    0x0000
+  )
+
+
+# start()
+# push_literal(0xffff)
+# push_literal(0x1)
+# add()
+# jump_if_0(0x0)
+
+
+# start()
+# push_literal(0x3c8)
+# push_literal(0x3f3)
+# push_literal(0xf0)
+# push_literal(0xf0)
+# push_literal(0x378)
+# push_literal(0x0)
+# jump_if_0(0x0000)
+
+
 start()
-push_literal(0xcafe)
-push_literal(0xffef)
-push_literal(0xffff)
-nand()
-store()
+push_literal(0x4242)
+return_push()
+push_literal(0x0000)
+push_literal(0x4444)
+return_pop()
+drop()
+drop()
+drop()
 push_literal(0x0000)
 jump_if_0(0x0000)
+
+
+# start()
+# push_literal(0xcafe)
+# push_literal(0x0010)
+# store()
+# push_literal(0x0010)
+# load()
+# drop()
+# push_literal(0x0000)
+# jump_if_0(0x0000)
+# push_literal(0x0001)
+# jump_if_0(0x0000)
+
+
+# start()
+# push_literal(0xcafe)
+# push_literal(0xffef)
+# push_literal(0xffff)
+# nand()
+# store()
+# push_literal(0x0000)
+# jump_if_0(0x0000)
 
 # start()
 # push_literal(0x2244)
