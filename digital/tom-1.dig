@@ -10,6 +10,10 @@
           <string>runRealTime</string>
           <boolean>true</boolean>
         </entry>
+        <entry>
+          <string>Frequency</string>
+          <int>10000</int>
+        </entry>
       </elementAttributes>
       <pos x="-440" y="-1600"/>
     </visualElement>
@@ -130,8 +134,8 @@
         </entry>
         <entry>
           <string>Data</string>
-          <data>1c42,c42,1800,5700,1c00,c00,1c44,c44,1a00,5500,1000,4100,1000,4100,1000,4100,1c00,
-c00,1000,8000</data>
+          <data>0,100,1c55,c66,1c11,c22,1cff,cff,1000,6000,1c00,c01,1000,4000,1000,4000,1000,4100,
+1c00,c00,1000,8000</data>
         </entry>
         <entry>
           <string>lastDataFile</string>
@@ -662,7 +666,7 @@ c00,1000,8000</data>
     <visualElement>
       <elementName>In</elementName>
       <elementAttributes/>
-      <pos x="-3540" y="-1060"/>
+      <pos x="-3520" y="-1220"/>
     </visualElement>
     <visualElement>
       <elementName>Not</elementName>
@@ -1260,6 +1264,11 @@ c00,1000,8000</data>
       <elementName>Ground</elementName>
       <elementAttributes/>
       <pos x="-2360" y="-1060"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Reset</elementName>
+      <elementAttributes/>
+      <pos x="-3540" y="-1060"/>
     </visualElement>
   </visualElements>
   <wires>
