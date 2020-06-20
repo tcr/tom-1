@@ -1,0 +1,20 @@
+from tools import *
+
+start()
+push_literal(0xcafe)
+push_literal(0x0010)
+store()
+push_literal(0x0010)
+load()
+drop()
+push_literal(0x0000)
+jump_if_0(0x0000)
+push_literal(0x0001)
+jump_if_0(0x0000)
+
+debug()
+step_until(PC=0x3)
+validate(tos_bus=0xCAFE)
+step_until(PC=0xc)
+validate(TOS=0xCAFE)
+print('success')

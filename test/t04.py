@@ -1,0 +1,20 @@
+from tools import *
+
+start()
+push_literal(0x4242)
+return_push()
+push_literal(0x0000)
+push_literal(0x4444)
+return_pop()
+drop()
+drop()
+drop()
+push_literal(0x0000)
+jump_if_0(0x0000)
+
+debug()
+step_until(PC=0xB)
+validate(dr=0x01)
+step_until(PC=0xC)
+validate(TOS=0x4242)
+print('success')
