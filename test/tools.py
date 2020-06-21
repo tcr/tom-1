@@ -49,8 +49,8 @@ def debug():
 TOS_DISABLE = 1
 R_OE = 2
 DR_UnD = 4
-STACK_W_nR = 8
-CCK = 16
+CCK = 8
+STACK_W_nR = 16
 TOS_BUS_SEL_1 = 32
 TOS_BUS_SEL_2 = 64
 JUMPIF0 = 128
