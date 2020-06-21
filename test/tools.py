@@ -67,17 +67,29 @@ D_CCK is OR(AND(OR(p4, RAM), clk, pulse) and(~clk, pulse))
 R_U/~D is ~D_U/~D
 """
 
+current_pos = 0
+
+def loc():
+  global current_pos
+  return current_pos
+
 def write(arg):
   f = open("rom.hex", "a")
   f.write(arg)
   f.write('\n')
 
 def writeh(code_a, code_b, arg):
+  global current_pos
+
   a = format(code_a, '02x')
   b = format(code_b, '02x')
+  if arg < 0:
+    arg += 0xffff
   x = format(arg, '04x')
   write(a + x[0:2])
   write(b + x[2:4])
+
+  current_pos += 2
 
 def start():
   open("rom.hex", "w")
