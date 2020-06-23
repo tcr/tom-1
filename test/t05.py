@@ -14,8 +14,8 @@ jump_if_0(0)
 
 
 debug()
-step_until(PC=0x8)
+step_until(pc=0x8)
 validate(dr=0x3)
-step_until(PC=0x12)
+step_until(pc=0x12)
 validate(dr=0x0)
 print('success')
