@@ -16,5 +16,7 @@ jump_if_0(0)
 jump_if_0(0)
 
 debug()
+step_until(PC=18)
+validate(TOS=20)
 step_until(PC=20)
 print("success")
