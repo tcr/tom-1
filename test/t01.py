@@ -1,20 +1,24 @@
-from tools import *
+from tom1 import *
 
-start()
-push_literal(0xcafe)
-push_literal(0x0010)
-store()
-push_literal(0x0010)
-load()
-drop()
-push_literal(0x0000)
-jump_if_0(0x0000)
-push_literal(0x0001)
-jump_if_0(0x0000)
+labels = generate("""
+
+[start]
+
+0xcafe [check_tos] 0x0010 !
+
+0x0010 @ [check_tos2] drop
+
+0 branch0 start
+
+1 branch0 start
+
+""")
 
 debug()
-step_until(pc=0x3)
+step_until(pc=labels['check_tos']-1)
 validate(tos_bus=0xCAFE)
-step_until(pc=0xc)
+step_until(pc=labels['check_tos'])
+validate(tos=0xCAFE)
+step_until(pc=labels['check_tos2'])
 validate(tos=0xCAFE)
 print('success')

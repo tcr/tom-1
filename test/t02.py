@@ -1,13 +1,16 @@
-from tools import *
+from tom1 import *
 
-start()
-push_literal(0x2244)
-push_literal(0x4422)
-nand()
-push_literal(0x1111)
-nand()
-push_literal(0x0000)
-jump_if_0(0x0000)
+generate("""
+
+[start]
+
+0x2244 0x4422 ~&
+
+0x1111 ~&
+
+0 branch0 start
+
+""")
 
 debug()
 step_until(pc=0x8)

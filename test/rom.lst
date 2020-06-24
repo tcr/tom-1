@@ -1,0 +1,44 @@
+0000:  zero_tos()
+    00
+    01    0000
+
+0002:  push_literal(20)
+    1c
+    14    0014
+
+0004:  push_literal(0)
+    1c
+    14    0000
+
+0006:  return_push()
+    1e
+    49    0000
+
+0008:  push_literal(256)
+    1c
+    14    0100
+
+000a:  store()
+    28
+    41    0000
+
+000c:  return_pop()
+    1c
+    4b    0000
+
+000e:  push_literal(256)
+    1c
+    14    0100
+
+0010:  load()
+    3c
+    49    0000
+
+0012:  jump_if_0()
+    08
+    c1    0002
+
+0014:  jump_if_0()
+    08
+    c1    0002
+

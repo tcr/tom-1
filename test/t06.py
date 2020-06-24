@@ -1,22 +1,27 @@
-from tools import *
+from tom1 import *
 
+labels = generate("""
 
-TEMP = 0x0100
+[start]
 
-start()
-push_literal(20)
-push_literal(0)
-return_push()
-push_literal(TEMP)
-store()
-return_pop()
-push_literal(TEMP)
-load()
-jump_if_0(0)
-jump_if_0(0)
+20 0 >r
+
+{TEMP} !
+
+r> {TEMP} @
+
+[check_tos]
+
+branch0 start
+
+[check_pc]
+
+branch0 start
+
+""".format(TEMP=0x0100))
 
 debug()
-step_until(pc=18)
+step_until(pc=labels['check_tos'])
 validate(tos=20)
-step_until(pc=20)
+step_until(pc=labels['check_pc'])
 print("success")

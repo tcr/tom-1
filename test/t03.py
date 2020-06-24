@@ -1,13 +1,17 @@
-from tools import *
+from tom1 import *
 
-start()
-push_literal(0xffff)
-push_literal(0x1)
-add()
-jump_if_0(0x0)
+labels = generate("""
+
+[start]
+
+0xffff 1 + [check_tos]
+
+branch0 start
+
+""")
 
 debug()
-step_until(pc=0x8)
-validate(tos=0x0)
-step_until(pc=0x0)
+step_until(pc=labels['check_tos'])
+validate(tos=0)
+step_until(pc=labels['start'])
 print('success')

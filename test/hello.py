@@ -1,6 +1,6 @@
-from tools import *
+from tom1 import *
 
-start()
+zero_tos()
 push_literal(0x3c8)
 noop()
 noop()
@@ -26,5 +26,6 @@ noop()
 noop()
 noop()
 jump_if_0(0x0000)
+write_code()
 
 debug()

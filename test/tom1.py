@@ -30,6 +30,10 @@ def validate(**kwargs):
       raise Exception('{} does not equal {}, equals {}'.format(k, v, signals[k]))
   return True
 
+def dump_signals():
+  signals = json.loads(sendmsg(b'measure'))
+  print(signals)
+
 def step():
   sendmsg(b'run')
 
@@ -67,108 +71,182 @@ D_CCK is OR(AND(OR(p4, RAM), clk, pulse) and(~clk, pulse))
 R_U/~D is ~D_U/~D
 """
 
-current_pos = 0
+codes = []
 
 def loc():
-  global current_pos
-  return current_pos
+  global codes
+  return len(codes)
 
 def write(arg):
   f = open("rom.hex", "a")
   f.write(arg)
   f.write('\n')
 
-def writeh(code_a, code_b, arg):
-  global current_pos
+def writeh(code_a, code_b, arg, invocation="?"):
+  global codes
+  codes.append([code_a, code_b, arg, invocation])
 
-  a = format(code_a, '02x')
-  b = format(code_b, '02x')
-  if arg < 0:
-    arg += 0xffff
-  x = format(arg, '04x')
-  write(a + x[0:2])
-  write(b + x[2:4])
-
-  current_pos += 2
-
-def start():
+def write_code():
   open("rom.hex", "w")
   write('v2.0 raw')
-  zero_tos()
+  for [code_a, code_b, arg, invocation] in codes:
+    a = format(code_a, '02x')
+    b = format(code_b, '02x')
+    x = format(arg, '04x')
+    write(a + x[0:2])
+    write(b + x[2:4])
+
+  with open("rom.lst", "w") as f:
+    i = 0
+    for [code_a, code_b, arg, invocation] in codes:
+      f.write(format(i, '04x'))
+      f.write(':  ')
+      f.write(invocation)
+      f.write('\n    ')
+      f.write(format(code_a, '02x'))
+      f.write('\n    ')
+      f.write(format(code_b, '02x'))
+      f.write('    ')
+      f.write(format(arg, '04x'))
+      f.write('\n\n')
+      i += 2
 
 def zero_tos():
   writeh(
     TOS_BUS_ROM,
     TOS_BUS_ROM | TOS_DISABLE,
-    0x0
+    0x0,
+    'zero_tos()'
   )
 
 def push_literal(arg):
   writeh(
     TOS_BUS_ROM | CCK | DR_UnD | STACK_W_nR,
     TOS_BUS_ROM | DR_UnD | STACK_W_nR,
-    arg
+    arg,
+    'push_literal({})'.format(arg)
   )
 
 def jump_if_0(arg):
   writeh(
     TOS_BUS_ROM | CCK,
-    TOS_BUS_ROM | JUMPIF0,
+    TOS_BUS_ADD | JUMPIF0 | TOS_DISABLE,
     arg,
+    'jump_if_0()',
   )
 
 def add():
   writeh(
     TOS_BUS_ROM | CCK,
     TOS_BUS_ADD,
-    0x0000
+    0x0000,
+    'add()',
   )
 
 def nand():
   writeh(
     TOS_BUS_ROM | CCK,
     TOS_BUS_NAND,
-    0x0000
+    0x0000,
+    'nand()',
   )
 
 def store():
   writeh(
     TOS_BUS_RAM | CCK,
     TOS_BUS_ADD | TOS_DISABLE,
-    0x0000
+    0x0000,
+    'store()',
   )
 
 def load():
   writeh(
     TOS_BUS_RAM | CCK | DR_UnD | STACK_W_nR,
     TOS_BUS_ADD | CCK | TOS_DISABLE,
-    0x0000
+    0x0000,
+    'load()',
   )
 
 def drop():
   writeh(
     TOS_BUS_ROM | CCK,
     TOS_BUS_ADD | TOS_DISABLE,
-    0x0000
+    0x0000,
+    'drop()',
   )
 
 def return_push():
   writeh(
     TOS_BUS_ROM | CCK | R_OE | DR_UnD | STACK_W_nR,
     TOS_BUS_ADD | CCK | TOS_DISABLE,
-    0x0000
+    0x0000,
+    'return_push()',
   )
 
 def return_pop():
   writeh(
     TOS_BUS_ROM | CCK | DR_UnD | STACK_W_nR,
     TOS_BUS_ADD | CCK | TOS_DISABLE | R_OE,
-    0x0000
+    0x0000,
+    'return_pop()',
   )
 
 def noop():
   writeh(
     TOS_BUS_ROM | CCK | STACK_W_nR | DR_UnD,
     TOS_BUS_ADD | CCK | TOS_DISABLE,
-    0x0000
+    0x0000,
+    'noop()',
   )
+
+def generate(script):
+  tokens = script.split()
+
+  labels = set()
+  for token in tokens:
+    if token.startswith("["):
+      labels.add(token[1:-1])
+
+  zero_tos()
+
+  label_pos = dict()
+  label_jumps = dict()
+  for token in tokens:
+    if token == '!':
+      store()
+    elif token == '@':
+      load()
+    elif token == 'drop':
+      drop()
+    elif token == 'branch0':
+      jump_if_0(0)
+    elif token == '~&':
+      nand()
+    elif token == '+':
+      add()
+    elif token == '>r':
+      return_push()
+    elif token == 'r>':
+      return_pop()
+    else:
+      if token.startswith("0x"):
+        push_literal(int(token, 16))
+      elif token.isnumeric():
+        push_literal(int(token))
+      elif token.startswith("-") and token[1:].isnumeric():
+        push_literal(0x10000 + int(token))
+      elif token.startswith("["):
+        label_pos[token[1:-1]] = loc() * 2
+      elif token in labels:
+        label_jumps[loc()-1] = token
+      else:
+        raise Exception('unknown token "{}"'.format(token))
+
+  # finally, patch jumps
+  global codes
+  for l, token in label_jumps.items():
+    codes[l][2] = label_pos[token]
+
+  write_code()
+
+  return label_pos

@@ -1,21 +1,18 @@
-from tools import *
+from tom1 import *
 
-start()
-push_literal(0x5566)
-push_literal(0x1122)
-push_literal(0xffff)
-nand()
-push_literal(0x1)
-add()
-add()
-drop()
-push_literal(0)
-jump_if_0(0)
+labels = generate("""
 
+[start]
+
+0x5566 0x1122 0xffff [check_dr] ~& 1 + + drop [check_dr2]
+
+0 branch0 start
+
+""")
 
 debug()
-step_until(pc=0x8)
+step_until(pc=labels['check_dr'])
 validate(dr=0x3)
-step_until(pc=0x12)
+step_until(pc=labels['check_dr2'])
 validate(dr=0x0)
 print('success')

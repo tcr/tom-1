@@ -1,20 +1,22 @@
-from tools import *
+from tom1 import *
 
-start()
-push_literal(0x4242)
-return_push()
-push_literal(0x0000)
-push_literal(0x4444)
-return_pop()
-drop()
-drop()
-drop()
-push_literal(0x0000)
-jump_if_0(0x0000)
+labels = generate("""
+
+[start]
+
+0x4242 >r 0x0000 0x4444 r>
+
+[check_drop] drop
+
+drop drop
+
+0 branch0 start
+
+""")
 
 debug()
-step_until(pc=0xB)
+step_until(pc=labels['check_drop'] - 1)
 validate(dr=0x01)
-step_until(pc=0xC)
+step_until(pc=labels['check_drop'])
 validate(tos=0x4242)
 print('success')
