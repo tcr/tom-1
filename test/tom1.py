@@ -24,15 +24,28 @@ def sendmsg(M):
   return arg
 
 def validate(**kwargs):
-  signals = json.loads(sendmsg(b'measure'))
+  signals = dump_signals()
   for k, v in kwargs.items():
     if signals[k] != v:
       raise Exception('{} does not equal {}, equals {}'.format(k, v, signals[k]))
   return True
 
-def dump_signals():
+def dump_signals(*args):
   signals = json.loads(sendmsg(b'measure'))
-  print(signals)
+  if signals['stack_addr'] >= 256:
+    signals['stack_addr'] = signals['stack_addr'] - 256
+    signals['return_stack'] = True
+  else:
+    signals['return_stack'] = False
+
+  d = dict()
+  if len(args) == 0:
+    d = signals
+  else:
+    for arg in args:
+      d[arg] = signals[arg]
+
+  return d
 
 def step():
   sendmsg(b'run')
@@ -54,13 +67,21 @@ TOS_DISABLE = 1
 R_OE = 2
 DR_UnD = 4
 CCK = 8
-STACK_W_nR = 16
-TOS_BUS_SEL_1 = 32
-TOS_BUS_SEL_2 = 64
-JUMPIF0 = 128
+
+CPU_BUS_SEL_1 = 16
+CPU_BUS_SEL_2 = 32
+
+CPU_BUS_STACK = 0
+CPU_BUS_STORE = CPU_BUS_SEL_1
+CPU_BUS_RAM = CPU_BUS_SEL_2
+CPU_BUS_TOS = CPU_BUS_SEL_1 | CPU_BUS_SEL_2
+
+
+TOS_BUS_SEL_1 = 64
+TOS_BUS_SEL_2 = 128
 
 TOS_BUS_ROM = 0
-TOS_BUS_RAM = TOS_BUS_SEL_1
+TOS_BUS_BRANCH = TOS_BUS_SEL_1
 TOS_BUS_ADD = TOS_BUS_SEL_2
 TOS_BUS_NAND = TOS_BUS_SEL_1 | TOS_BUS_SEL_2
 
@@ -113,88 +134,96 @@ def write_code():
 
 def zero_tos():
   writeh(
-    TOS_BUS_ROM,
-    TOS_BUS_ROM | TOS_DISABLE,
+    TOS_BUS_ROM | CPU_BUS_STACK,
+    TOS_BUS_ROM | CPU_BUS_STACK | TOS_DISABLE,
     0x0,
     'zero_tos()'
   )
 
 def push_literal(arg):
   writeh(
-    TOS_BUS_ROM | CCK | DR_UnD | STACK_W_nR,
-    TOS_BUS_ROM | DR_UnD | STACK_W_nR,
+    TOS_BUS_ROM | CPU_BUS_TOS | CCK | DR_UnD,
+    TOS_BUS_ROM | CPU_BUS_TOS,
     arg,
     'push_literal({})'.format(arg)
   )
 
-def jump_if_0(arg):
+def dup():
   writeh(
-    TOS_BUS_ROM | CCK,
-    TOS_BUS_ADD | JUMPIF0 | TOS_DISABLE,
-    arg,
+    TOS_BUS_ROM | CPU_BUS_TOS | CCK | DR_UnD,
+    TOS_BUS_ADD | CPU_BUS_STACK | TOS_DISABLE,
+    0,
+    'dup()',
+  )
+
+def jump_if_0():
+  writeh(
+    TOS_BUS_ROM | CPU_BUS_STACK | CCK,
+    TOS_BUS_BRANCH | CPU_BUS_STACK | TOS_DISABLE,
+    0,
     'jump_if_0()',
   )
 
 def add():
   writeh(
-    TOS_BUS_ROM | CCK,
-    TOS_BUS_ADD,
+    TOS_BUS_ROM | CPU_BUS_STACK | CCK,
+    TOS_BUS_ADD | CPU_BUS_STACK,
     0x0000,
     'add()',
   )
 
 def nand():
   writeh(
-    TOS_BUS_ROM | CCK,
-    TOS_BUS_NAND,
+    TOS_BUS_ROM | CPU_BUS_STACK | CCK,
+    TOS_BUS_NAND | CPU_BUS_STACK,
     0x0000,
     'nand()',
   )
 
 def store():
   writeh(
-    TOS_BUS_RAM | CCK,
-    TOS_BUS_ADD | TOS_DISABLE,
+    TOS_BUS_ROM | CPU_BUS_RAM | CCK,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE,
     0x0000,
     'store()',
   )
 
 def load():
   writeh(
-    TOS_BUS_RAM | CCK | DR_UnD | STACK_W_nR,
-    TOS_BUS_ADD | CCK | TOS_DISABLE,
+    TOS_BUS_ROM | CPU_BUS_STORE | CCK | DR_UnD,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE,
     0x0000,
     'load()',
   )
 
 def drop():
   writeh(
-    TOS_BUS_ROM | CCK,
-    TOS_BUS_ADD | TOS_DISABLE,
+    TOS_BUS_ROM | CPU_BUS_STACK | CCK,
+    TOS_BUS_ADD | CPU_BUS_STACK | TOS_DISABLE,
     0x0000,
     'drop()',
   )
 
 def return_push():
   writeh(
-    TOS_BUS_ROM | CCK | R_OE | DR_UnD | STACK_W_nR,
-    TOS_BUS_ADD | CCK | TOS_DISABLE,
+    TOS_BUS_ROM | CPU_BUS_TOS | CCK | R_OE | DR_UnD,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE,
     0x0000,
     'return_push()',
   )
 
 def return_pop():
   writeh(
-    TOS_BUS_ROM | CCK | DR_UnD | STACK_W_nR,
-    TOS_BUS_ADD | CCK | TOS_DISABLE | R_OE,
+    TOS_BUS_ROM | CPU_BUS_TOS | CCK | DR_UnD,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE | R_OE,
     0x0000,
     'return_pop()',
   )
 
 def noop():
   writeh(
-    TOS_BUS_ROM | CCK | STACK_W_nR | DR_UnD,
-    TOS_BUS_ADD | CCK | TOS_DISABLE,
+    TOS_BUS_ROM | CPU_BUS_TOS | CCK | DR_UnD,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE,
     0x0000,
     'noop()',
   )
@@ -218,8 +247,12 @@ def generate(script):
       load()
     elif token == 'drop':
       drop()
+    elif token == 'dup':
+      dup()
     elif token == 'branch0':
-      jump_if_0(0)
+      jump_if_0()
+    elif token == 'noop':
+      noop()
     elif token == '~&':
       nand()
     elif token == '+':

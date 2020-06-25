@@ -2,43 +2,95 @@
     00
     01    0000
 
-0002:  push_literal(20)
-    1c
-    14    0014
+0002:  push_literal(10)
+    3c
+    30    000a
 
-0004:  push_literal(0)
-    1c
-    14    0000
+0004:  push_literal(8)
+    3c
+    30    0008
 
-0006:  return_push()
-    1e
-    49    0000
+0006:  push_literal(6)
+    3c
+    30    0006
 
-0008:  push_literal(256)
-    1c
-    14    0100
+0008:  return_push()
+    3e
+    89    0000
 
-000a:  store()
-    28
-    41    0000
+000a:  noop()
+    3c
+    89    0000
 
 000c:  return_pop()
-    1c
-    4b    0000
-
-000e:  push_literal(256)
-    1c
-    14    0100
-
-0010:  load()
     3c
-    49    0000
+    8b    0000
 
-0012:  jump_if_0()
-    08
-    c1    0002
+000e:  push_literal(4)
+    3c
+    30    0004
 
-0014:  jump_if_0()
+0010:  noop()
+    3c
+    89    0000
+
+0012:  return_push()
+    3e
+    89    0000
+
+0014:  noop()
+    3c
+    89    0000
+
+0016:  return_push()
+    3e
+    89    0000
+
+0018:  noop()
+    3c
+    89    0000
+
+001a:  return_push()
+    3e
+    89    0000
+
+001c:  noop()
+    3c
+    89    0000
+
+001e:  return_pop()
+    3c
+    8b    0000
+
+0020:  return_pop()
+    3c
+    8b    0000
+
+0022:  return_pop()
+    3c
+    8b    0000
+
+0024:  drop()
     08
-    c1    0002
+    81    0000
+
+0026:  drop()
+    08
+    81    0000
+
+0028:  drop()
+    08
+    81    0000
+
+002a:  drop()
+    08
+    81    0000
+
+002c:  push_literal(0)
+    3c
+    30    0000
+
+002e:  jump_if_0()
+    08
+    41    0002
 
