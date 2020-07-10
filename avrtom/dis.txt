@@ -1,24 +1,46 @@
 main:
+		ldi r20,0
+		add r21, r21
+.L2:
+		mov r30,r20
+		ldi r31,0
+		inc r31
+		st Z,r21
+		subi r20,lo8(-(1))
+		sbrs r20,7
+		rjmp .L2
+		ldi r20,0
+		add r21, r21
+		subi r21,lo8(-(1))
+.L3:
+		mov r30,r20
+		ldi r31,0
+		subi r30,-128
+		sbci r31,-2
+		st Z,r21
+		subi r20,lo8(-(1))
+		sbrs r20,7
+		rjmp .L3
 		ldi r24,0
 		ldi r22,0
 		ldi r23,lo8(4)
-.L2:
+.L4:
 		ldi r20,0
-.L3:
+.L5:
 		mov r21,r22
 		add r21,r20
 		out 0x20,r21
 		out 0x20,r23
 		subi r20,lo8(-(1))
 		cpi r20,lo8(8)
-		brne .L3
+		brne .L5
 		subi r22,lo8(-(8))
 		subi r24,lo8(-(1))
 		cpi r24,lo8(8)
-		brne .L2
+		brne .L4
 		ldi r20,0
 		ldi r21,lo8(6)
-.L4:
+.L6:
 		out 0x20,r20
 		out 0x20,r21
 		ldi r22,lo8(56)
@@ -27,10 +49,10 @@ main:
 		out 0x20,r21
 		subi r20,lo8(-(1))
 		cpi r20,lo8(8)
-		brne .L4
+		brne .L6
 		ldi r20,0
 		ldi r21,lo8(6)
-.L5:
+.L7:
 		out 0x20,r20
 		out 0x20,r21
 		ldi r22,lo8(7)
@@ -39,6 +61,6 @@ main:
 		out 0x20,r21
 		subi r20,lo8(-(8))
 		cpi r20,lo8(64)
-		brne .L5
+		brne .L7
 		ldi r24,0
 		ret

@@ -82,8 +82,19 @@ uint8_t main(uint8_t a, uint8_t b) {
 #define WIDTH 8
 #define HEIGHT 8
 
-// Outputs all values in a circle
 uint8_t main(uint8_t a, uint8_t b) {
+    // Setup shift tables.
+    for (uint8_t x = 0; x < 0x80; x++) {
+        uint8_t y = x;
+        asm("add %0, %0\n\t" : "=r" (y));
+        *((uint8_t*)(x + 0x100)) = y;
+    }
+    for (uint8_t x = 0; x < 0x80; x++) {
+        uint8_t y = x;
+        asm("add %0, %0\n\t" : "=r" (y));
+        *((uint8_t*)(x + 0x180)) = y + 0x1;
+    }
+
     uint8_t j_o = 0;
     for (uint8_t j = 0; j < HEIGHT; j++) {
         for (uint8_t i = 0; i < WIDTH; i++) {
