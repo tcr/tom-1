@@ -196,6 +196,22 @@ def load():
     'load()',
   )
 
+def io_in():
+  writeh(
+    TOS_BUS_NAND | CPU_BUS_RAM | CCK,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE,
+    0x0000,
+    'io_in()',
+  )
+
+def io_out():
+  writeh(
+    TOS_BUS_NAND | CPU_BUS_STORE | CCK | DR_UnD,
+    TOS_BUS_ADD | CPU_BUS_STACK | CCK | TOS_DISABLE,
+    0x0000,
+    'io_out()',
+  )
+
 def drop():
   writeh(
     TOS_BUS_ROM | CPU_BUS_STACK | CCK,
@@ -241,9 +257,9 @@ def generate(script):
   label_pos = dict()
   label_jumps = dict()
   for token in tokens:
-    if token == '!':
+    if token == '!' or token == 'store':
       store()
-    elif token == '@':
+    elif token == '@' or token == 'load':
       load()
     elif token == 'drop':
       drop()
@@ -253,14 +269,18 @@ def generate(script):
       jump_if_0()
     elif token == 'noop':
       noop()
-    elif token == '~&':
+    elif token == '~&' or token == 'nand':
       nand()
-    elif token == '+':
+    elif token == '+' or token == 'add':
       add()
-    elif token == '>r':
+    elif token == '>r' or token == 'return_push':
       return_push()
-    elif token == 'r>':
+    elif token == 'r>' or token == 'return_pop':
       return_pop()
+    elif token == 'out':
+      io_out()
+    elif token == 'in':
+      io_in()
     else:
       if token.startswith("0x"):
         push_literal(int(token, 16))

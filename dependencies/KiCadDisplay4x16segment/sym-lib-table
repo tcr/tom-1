@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name Display4x16segment-rescue)(type Legacy)(uri ${KIPRJMOD}/Display4x16segment-rescue.lib)(options "")(descr ""))
-)

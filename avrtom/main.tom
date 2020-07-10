@@ -1,0 +1,130 @@
+
+    1 0 store
+    0 256 store
+
+[main]
+
+    # ldi r24,0
+    0 24 store
+
+    # ldi r22,0
+    0 22 store
+
+    # ldi r23,lo8(4)
+    4 23 store
+
+[L2]
+
+    # ldi r20,0
+    0 20 store
+
+[L3]
+
+    # mov r21,r22
+    22 load 21 store
+
+    # add r21,r20
+    21 load 20 load add dup {status} store 0xff nand -1 nand 21 store
+
+    # out 0x20,r21
+    21 out
+
+    # out 0x20,r23
+    23 out
+
+    # subi r20,lo8(-(1))
+    20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
+
+    # cpi r20,lo8(8)
+    20 load 8 -1 nand 1 add add {status} store
+
+    # brne .L3
+    {status} load 0xff nand -1 nand branch0 brne_next0 0 branch0 L3 [brne_next0]
+
+    # subi r22,lo8(-(8))
+    22 load 248 -1 nand 1 add add dup {status} store 0xff nand -1 nand 22 store
+
+    # subi r24,lo8(-(1))
+    24 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 24 store
+
+    # cpi r24,lo8(8)
+    24 load 8 -1 nand 1 add add {status} store
+
+    # brne .L2
+    {status} load 0xff nand -1 nand branch0 brne_next1 0 branch0 L2 [brne_next1]
+
+    # ldi r20,0
+    0 20 store
+
+    # ldi r21,lo8(6)
+    6 21 store
+
+[L4]
+
+    # out 0x20,r20
+    20 out
+
+    # out 0x20,r21
+    21 out
+
+    # ldi r22,lo8(56)
+    56 22 store
+
+    # add r22,r20
+    22 load 20 load add dup {status} store 0xff nand -1 nand 22 store
+
+    # out 0x20,r22
+    22 out
+
+    # out 0x20,r21
+    21 out
+
+    # subi r20,lo8(-(1))
+    20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
+
+    # cpi r20,lo8(8)
+    20 load 8 -1 nand 1 add add {status} store
+
+    # brne .L4
+    {status} load 0xff nand -1 nand branch0 brne_next2 0 branch0 L4 [brne_next2]
+
+    # ldi r20,0
+    0 20 store
+
+    # ldi r21,lo8(6)
+    6 21 store
+
+[L5]
+
+    # out 0x20,r20
+    20 out
+
+    # out 0x20,r21
+    21 out
+
+    # ldi r22,lo8(7)
+    7 22 store
+
+    # add r22,r20
+    22 load 20 load add dup {status} store 0xff nand -1 nand 22 store
+
+    # out 0x20,r22
+    22 out
+
+    # out 0x20,r21
+    21 out
+
+    # subi r20,lo8(-(8))
+    20 load 248 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
+
+    # cpi r20,lo8(64)
+    20 load 64 -1 nand 1 add add {status} store
+
+    # brne .L5
+    {status} load 0xff nand -1 nand branch0 brne_next3 0 branch0 L5 [brne_next3]
+
+    # ldi r24,0
+    0 24 store
+
+    # ret
+
