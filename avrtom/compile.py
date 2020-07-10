@@ -201,7 +201,7 @@ for line in inputfile.strip().split("\n"):
         else:
             raise Exception("no match")
 
-    # else:
-    #     raise Exception("no match anywhere")
+    else:
+        raise Exception("no match anywhere")
 
     print()
