@@ -1,7 +1,6 @@
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
 
-/*
 uint8_t main(uint8_t a, uint8_t b) {
   uint8_t sum = 0;
   for (uint8_t i = 0; i < a; ++i) {
@@ -9,7 +8,6 @@ uint8_t main(uint8_t a, uint8_t b) {
   }
   return sum;
 }
-*/
 
 // https://github.com/embecosm/avr-gcc/blob/2060056813eb7bad1fd44a1620cc5e0223bcb75a/libgcc/config/avr/lib1funcs.S#L1316
 // uint8_t __udivmodqi4(uint8_t a, uint8_t b) {
@@ -79,6 +77,7 @@ uint8_t main(uint8_t a, uint8_t b) {
 }
 */
 
+/*
 #define WIDTH 8
 #define HEIGHT 8
 
@@ -119,3 +118,45 @@ uint8_t main(uint8_t a, uint8_t b) {
 
     return 0;
 }
+*/
+
+// https://en.wikipedia.org/wiki/Byte_Sieve
+
+// char flags[8191];
+
+/*
+uint8_t main(uint8_t a, uint8_t b) {
+    uint8_t k = 0;
+    do {
+        k--;
+        uint8_t l = k + k;
+        *(uint8_t*)(0x200 + k) = l;
+        *(uint8_t*)(0x300 + l) = k;
+    } while (k > 0);
+
+
+
+    // int i, prime, k, count, iter, size;
+    // size=8190;
+
+    // for (iter = 1;iter < 10;iter ++) {
+    //     count = 0;
+    //     for (i = 0; i <= size; i++) {
+    //         flags[i] = 1;
+    //     }
+    //     for (i = 0; i <= size; i++) {
+    //         if (flags[i]) {
+    //             prime = i + i + 3;
+    //             k = 1 + prime;
+    //             while (k <= size) {
+    //                 flags[k] = 0;
+    //                 k += prime;
+    //             }
+    //             count = count + 1;
+    //         }
+    //     }
+    // }
+    return 0;
+}
+
+*/

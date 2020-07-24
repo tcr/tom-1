@@ -6,8 +6,8 @@ import re
 RE_LABEL = r"^\.?(\w+):\s*$"
 RE_Z_REG = r"^\s*(st)\s+Z,\s*r(\d+)\s*$"
 RE_REG_REG = r"^\s*(mov|ad[dc]|cpc?|sub|cpse)\s+r(\d+),\s*r(\d+)\s*$"
-RE_REG = r"^\s*(tst|clr|dec|com|inc)\s+r(\d+)\s*$"
-RE_REG_IMM = r"^\s*(subi|ldi|cpi)\s+r(\d+),\s*(\-?\d+|0x[a-f0-9]+|lo8\(\d+\))\s*$"
+RE_REG = r"^\s*(tst|clr|dec|com|inc|push)\s+r(\d+)\s*$"
+RE_REG_IMM = r"^\s*(subi|sbci|ldi|cpi)\s+r(\d+),\s*(\-?\d+|0x[a-f0-9]+|lo8\(\d+\)|hi8\(-\(\d+\)\))\s*$"
 RE_REG_LO8_IMM = r"^\s*(subi)\s+r(\d+),\s*lo8\(-\((\-?\d+)\)\)\s*$"
 RE_BRANCH = r"^\s*(breq|brlo|brne|brcs|rjmp)\s+\.?(\w+)\s*$"
 RE_OUT = r"^\s*(out)\s+(\-?\d+|0x[a-f0-9]+|lo8\(\d+\)),\s*r(\d+)$"
@@ -152,6 +152,12 @@ for line in inputfile.strip().split("\n"):
                     r_a=r_a, sub=sub, eightbit=eightbit
                 )
             )
+        elif op == "push":
+            print(
+                "    {r_a} load return_push".format(
+                    r_a=r_a,
+                )
+            )
         else:
             raise Exception("no match")
 
@@ -161,11 +167,19 @@ for line in inputfile.strip().split("\n"):
         imm = re.match(RE_REG_IMM, line)[3]
         if imm.startswith("lo8"):
             imm = imm[4:-1]
+        if imm.startswith("hi8"):
+            imm = (eval(imm[4:-1]) >> 8)
 
         if op == "subi":
             print(
                 "    {r_d} load {imm} {sub} dup {{status}} store {eightbit} {r_d} store".format(
                     r_d=r_d, imm=imm, eightbit=eightbit, sub=sub
+                )
+            )
+        elif op == "sbci":
+            print(
+                "    {r_d} load {carry} {add} {imm} {sub} dup {{status}} store {eightbit} {r_d} store".format(
+                    r_d=r_d, carry=carry, add=add, imm=imm, eightbit=eightbit, sub=sub
                 )
             )
         elif op == "ldi":

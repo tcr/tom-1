@@ -2,45 +2,45 @@
     20
     21    0000
 
-0002:  push_literal(2)
+0002:  push_literal(33)
+    3c
+    30    0021
+
+0004:  push_literal(2)
     3c
     30    0002
 
-0004:  push_literal(24)
-    3c
-    30    0018
-
-0006:  store()
-    08
+0006:  return_push()
+    3e
     e9    0000
 
-0008:  push_literal(39)
-    3c
-    30    0027
-
-000a:  push_literal(22)
-    3c
-    30    0016
-
-000c:  store()
-    08
-    e9    0000
-
-000e:  push_literal(1)
-    3c
-    30    0001
-
-0010:  push_literal(0)
+0008:  push_literal(0)
     3c
     30    0000
 
-0012:  store()
-    08
-    e9    0000
+000a:  return_pop()
+    3c
+    eb    0000
 
-0014:  push_literal(0)
+000c:  push_literal(0)
     3c
     30    0000
+
+000e:  return_push()
+    3e
+    e9    0000
+
+0010:  return_push()
+    3e
+    e9    0000
+
+0012:  noop()
+    3c
+    e9    0000
+
+0014:  return_push()
+    3e
+    e9    0000
 
 0016:  push_literal(256)
     3c
@@ -50,1055 +50,215 @@
     08
     e9    0000
 
-001a:  push_literal(0)
+001a:  push_literal(256)
     3c
-    30    0000
+    30    0100
 
-001c:  push_literal(24)
-    3c
-    30    0018
-
-001e:  store()
-    08
-    e9    0000
-
-0020:  push_literal(0)
-    3c
-    30    0000
-
-0022:  push_literal(22)
-    3c
-    30    0016
-
-0024:  store()
-    08
-    e9    0000
-
-0026:  push_literal(4)
-    3c
-    30    0004
-
-0028:  push_literal(23)
-    3c
-    30    0017
-
-002a:  store()
-    08
-    e9    0000
-
-002c:  push_literal(0)
-    3c
-    30    0000
-
-002e:  push_literal(20)
-    3c
-    30    0014
-
-0030:  store()
-    08
-    e9    0000
-
-0032:  push_literal(22)
-    3c
-    30    0016
-
-0034:  load()
+001c:  load()
     1c
     e9    0000
 
-0036:  push_literal(21)
+001e:  return_pop()
     3c
-    30    0015
+    eb    0000
 
-0038:  store()
-    08
-    e9    0000
-
-003a:  push_literal(21)
+0020:  push_literal(256)
     3c
-    30    0015
+    30    0100
 
-003c:  load()
+0022:  load()
     1c
     e9    0000
 
-003e:  push_literal(20)
+0024:  add()
+    28
+    e0    0000
+
+0026:  noop()
     3c
-    30    0014
+    e9    0000
+
+0028:  return_pop()
+    3c
+    eb    0000
+
+002a:  return_pop()
+    3c
+    eb    0000
+
+002c:  push_literal(1)
+    3c
+    30    0001
+
+002e:  add()
+    28
+    e0    0000
+
+0030:  noop()
+    3c
+    e9    0000
+
+0032:  return_push()
+    3e
+    e9    0000
+
+0034:  push_literal(256)
+    3c
+    30    0100
+
+0036:  store()
+    08
+    e9    0000
+
+0038:  push_literal(256)
+    3c
+    30    0100
+
+003a:  load()
+    1c
+    e9    0000
+
+003c:  return_pop()
+    3c
+    eb    0000
+
+003e:  push_literal(256)
+    3c
+    30    0100
 
 0040:  load()
     1c
     e9    0000
 
-0042:  add()
-    28
-    e0    0000
-
-0044:  dup()
+0042:  noop()
     3c
-    e1    0000
+    e9    0000
 
-0046:  push_literal(8)
+0044:  return_push()
+    3e
+    e9    0000
+
+0046:  push_literal(256)
     3c
-    30    0008
+    30    0100
 
 0048:  store()
     08
     e9    0000
 
-004a:  push_literal(255)
+004a:  push_literal(256)
     3c
-    30    00ff
+    30    0100
 
-004c:  nand()
-    28
-    60    0000
-
-004e:  push_literal(65535)
-    3c
-    30    ffff
-
-0050:  nand()
-    28
-    60    0000
-
-0052:  push_literal(21)
-    3c
-    30    0015
-
-0054:  store()
-    08
-    e9    0000
-
-0056:  push_literal(21)
-    3c
-    30    0015
-
-0058:  io_out()
-    5c
-    e9    0000
-
-005a:  push_literal(23)
-    3c
-    30    0017
-
-005c:  io_out()
-    5c
-    e9    0000
-
-005e:  push_literal(20)
-    3c
-    30    0014
-
-0060:  load()
+004c:  load()
     1c
     e9    0000
 
-0062:  push_literal(255)
+004e:  return_pop()
     3c
-    30    00ff
+    eb    0000
 
-0064:  push_literal(65535)
+0050:  push_literal(256)
+    3c
+    30    0100
+
+0052:  load()
+    1c
+    e9    0000
+
+0054:  noop()
+    3c
+    e9    0000
+
+0056:  return_push()
+    3e
+    e9    0000
+
+0058:  return_push()
+    3e
+    e9    0000
+
+005a:  noop()
+    3c
+    e9    0000
+
+005c:  push_literal(65535)
     3c
     30    ffff
 
-0066:  nand()
+005e:  nand()
     28
     60    0000
 
-0068:  push_literal(1)
+0060:  push_literal(1)
     3c
     30    0001
 
-006a:  add()
+0062:  add()
     28
     e0    0000
 
-006c:  add()
+0064:  add()
     28
     e0    0000
 
-006e:  dup()
-    3c
-    e1    0000
-
-0070:  push_literal(8)
-    3c
-    30    0008
-
-0072:  store()
-    08
-    e9    0000
-
-0074:  push_literal(255)
-    3c
-    30    00ff
-
-0076:  nand()
+0066:  jump_if_0()
     28
-    60    0000
+    a1    006e
 
-0078:  push_literal(65535)
-    3c
-    30    ffff
-
-007a:  nand()
-    28
-    60    0000
-
-007c:  push_literal(20)
-    3c
-    30    0014
-
-007e:  store()
-    08
-    e9    0000
-
-0080:  push_literal(20)
-    3c
-    30    0014
-
-0082:  load()
-    1c
-    e9    0000
-
-0084:  push_literal(8)
-    3c
-    30    0008
-
-0086:  push_literal(65535)
-    3c
-    30    ffff
-
-0088:  nand()
-    28
-    60    0000
-
-008a:  push_literal(1)
-    3c
-    30    0001
-
-008c:  add()
-    28
-    e0    0000
-
-008e:  add()
-    28
-    e0    0000
-
-0090:  push_literal(8)
-    3c
-    30    0008
-
-0092:  store()
-    08
-    e9    0000
-
-0094:  push_literal(8)
-    3c
-    30    0008
-
-0096:  load()
-    1c
-    e9    0000
-
-0098:  push_literal(255)
-    3c
-    30    00ff
-
-009a:  nand()
-    28
-    60    0000
-
-009c:  push_literal(65535)
-    3c
-    30    ffff
-
-009e:  nand()
-    28
-    60    0000
-
-00a0:  jump_if_0()
-    28
-    a1    00a6
-
-00a2:  push_literal(0)
+0068:  push_literal(0)
     3c
     30    0000
 
-00a4:  jump_if_0()
-    28
-    a1    0032
-
-00a6:  push_literal(22)
-    3c
-    30    0016
-
-00a8:  load()
-    1c
-    e9    0000
-
-00aa:  push_literal(248)
-    3c
-    30    00f8
-
-00ac:  push_literal(65535)
-    3c
-    30    ffff
-
-00ae:  nand()
-    28
-    60    0000
-
-00b0:  push_literal(1)
-    3c
-    30    0001
-
-00b2:  add()
-    28
-    e0    0000
-
-00b4:  add()
-    28
-    e0    0000
-
-00b6:  dup()
-    3c
-    e1    0000
-
-00b8:  push_literal(8)
-    3c
-    30    0008
-
-00ba:  store()
-    08
-    e9    0000
-
-00bc:  push_literal(255)
-    3c
-    30    00ff
-
-00be:  nand()
-    28
-    60    0000
-
-00c0:  push_literal(65535)
-    3c
-    30    ffff
-
-00c2:  nand()
-    28
-    60    0000
-
-00c4:  push_literal(22)
-    3c
-    30    0016
-
-00c6:  store()
-    08
-    e9    0000
-
-00c8:  push_literal(24)
-    3c
-    30    0018
-
-00ca:  load()
-    1c
-    e9    0000
-
-00cc:  push_literal(255)
-    3c
-    30    00ff
-
-00ce:  push_literal(65535)
-    3c
-    30    ffff
-
-00d0:  nand()
-    28
-    60    0000
-
-00d2:  push_literal(1)
-    3c
-    30    0001
-
-00d4:  add()
-    28
-    e0    0000
-
-00d6:  add()
-    28
-    e0    0000
-
-00d8:  dup()
-    3c
-    e1    0000
-
-00da:  push_literal(8)
-    3c
-    30    0008
-
-00dc:  store()
-    08
-    e9    0000
-
-00de:  push_literal(255)
-    3c
-    30    00ff
-
-00e0:  nand()
-    28
-    60    0000
-
-00e2:  push_literal(65535)
-    3c
-    30    ffff
-
-00e4:  nand()
-    28
-    60    0000
-
-00e6:  push_literal(24)
-    3c
-    30    0018
-
-00e8:  store()
-    08
-    e9    0000
-
-00ea:  push_literal(24)
-    3c
-    30    0018
-
-00ec:  load()
-    1c
-    e9    0000
-
-00ee:  push_literal(8)
-    3c
-    30    0008
-
-00f0:  push_literal(65535)
-    3c
-    30    ffff
-
-00f2:  nand()
-    28
-    60    0000
-
-00f4:  push_literal(1)
-    3c
-    30    0001
-
-00f6:  add()
-    28
-    e0    0000
-
-00f8:  add()
-    28
-    e0    0000
-
-00fa:  push_literal(8)
-    3c
-    30    0008
-
-00fc:  store()
-    08
-    e9    0000
-
-00fe:  push_literal(8)
-    3c
-    30    0008
-
-0100:  load()
-    1c
-    e9    0000
-
-0102:  push_literal(255)
-    3c
-    30    00ff
-
-0104:  nand()
-    28
-    60    0000
-
-0106:  push_literal(65535)
-    3c
-    30    ffff
-
-0108:  nand()
-    28
-    60    0000
-
-010a:  jump_if_0()
-    28
-    a1    0110
-
-010c:  push_literal(0)
+006a:  push_literal(0)
     3c
     30    0000
 
-010e:  jump_if_0()
+006c:  jump_if_0()
     28
-    a1    002c
+    a1    0070
 
-0110:  push_literal(0)
+006e:  push_literal(65535)
     3c
-    30    0000
+    30    ffff
 
-0112:  push_literal(20)
+0070:  noop()
     3c
-    30    0014
-
-0114:  store()
-    08
     e9    0000
 
-0116:  push_literal(6)
-    3c
-    30    0006
-
-0118:  push_literal(21)
-    3c
-    30    0015
-
-011a:  store()
-    08
-    e9    0000
-
-011c:  push_literal(20)
-    3c
-    30    0014
-
-011e:  io_out()
-    5c
-    e9    0000
-
-0120:  push_literal(21)
-    3c
-    30    0015
-
-0122:  io_out()
-    5c
-    e9    0000
-
-0124:  push_literal(56)
-    3c
-    30    0038
-
-0126:  push_literal(22)
-    3c
-    30    0016
-
-0128:  store()
-    08
-    e9    0000
-
-012a:  push_literal(22)
-    3c
-    30    0016
-
-012c:  load()
-    1c
-    e9    0000
-
-012e:  push_literal(20)
-    3c
-    30    0014
-
-0130:  load()
-    1c
-    e9    0000
-
-0132:  add()
+0072:  jump_if_0()
     28
-    e0    0000
+    a1    0012
 
-0134:  dup()
+0074:  noop()
     3c
+    e9    0000
+
+0076:  return_pop()
+    3c
+    eb    0000
+
+0078:  drop()
+    28
     e1    0000
 
-0136:  push_literal(8)
+007a:  return_pop()
     3c
-    30    0008
+    eb    0000
 
-0138:  store()
-    08
-    e9    0000
-
-013a:  push_literal(255)
-    3c
-    30    00ff
-
-013c:  nand()
+007c:  drop()
     28
-    60    0000
-
-013e:  push_literal(65535)
-    3c
-    30    ffff
-
-0140:  nand()
-    28
-    60    0000
-
-0142:  push_literal(22)
-    3c
-    30    0016
-
-0144:  store()
-    08
-    e9    0000
-
-0146:  push_literal(22)
-    3c
-    30    0016
-
-0148:  io_out()
-    5c
-    e9    0000
-
-014a:  push_literal(21)
-    3c
-    30    0015
-
-014c:  io_out()
-    5c
-    e9    0000
-
-014e:  push_literal(20)
-    3c
-    30    0014
-
-0150:  load()
-    1c
-    e9    0000
-
-0152:  push_literal(255)
-    3c
-    30    00ff
-
-0154:  push_literal(65535)
-    3c
-    30    ffff
-
-0156:  nand()
-    28
-    60    0000
-
-0158:  push_literal(1)
-    3c
-    30    0001
-
-015a:  add()
-    28
-    e0    0000
-
-015c:  add()
-    28
-    e0    0000
-
-015e:  dup()
-    3c
     e1    0000
 
-0160:  push_literal(8)
-    3c
-    30    0008
-
-0162:  store()
-    08
-    e9    0000
-
-0164:  push_literal(255)
-    3c
-    30    00ff
-
-0166:  nand()
+007e:  drop()
     28
-    60    0000
-
-0168:  push_literal(65535)
-    3c
-    30    ffff
-
-016a:  nand()
-    28
-    60    0000
-
-016c:  push_literal(20)
-    3c
-    30    0014
-
-016e:  store()
-    08
-    e9    0000
-
-0170:  push_literal(20)
-    3c
-    30    0014
-
-0172:  load()
-    1c
-    e9    0000
-
-0174:  push_literal(8)
-    3c
-    30    0008
-
-0176:  push_literal(65535)
-    3c
-    30    ffff
-
-0178:  nand()
-    28
-    60    0000
-
-017a:  push_literal(1)
-    3c
-    30    0001
-
-017c:  add()
-    28
-    e0    0000
-
-017e:  add()
-    28
-    e0    0000
-
-0180:  push_literal(8)
-    3c
-    30    0008
-
-0182:  store()
-    08
-    e9    0000
-
-0184:  push_literal(8)
-    3c
-    30    0008
-
-0186:  load()
-    1c
-    e9    0000
-
-0188:  push_literal(255)
-    3c
-    30    00ff
-
-018a:  nand()
-    28
-    60    0000
-
-018c:  push_literal(65535)
-    3c
-    30    ffff
-
-018e:  nand()
-    28
-    60    0000
-
-0190:  jump_if_0()
-    28
-    a1    0196
-
-0192:  push_literal(0)
-    3c
-    30    0000
-
-0194:  jump_if_0()
-    28
-    a1    011c
-
-0196:  push_literal(0)
-    3c
-    30    0000
-
-0198:  push_literal(20)
-    3c
-    30    0014
-
-019a:  store()
-    08
-    e9    0000
-
-019c:  push_literal(6)
-    3c
-    30    0006
-
-019e:  push_literal(21)
-    3c
-    30    0015
-
-01a0:  store()
-    08
-    e9    0000
-
-01a2:  push_literal(20)
-    3c
-    30    0014
-
-01a4:  io_out()
-    5c
-    e9    0000
-
-01a6:  push_literal(21)
-    3c
-    30    0015
-
-01a8:  io_out()
-    5c
-    e9    0000
-
-01aa:  push_literal(7)
-    3c
-    30    0007
-
-01ac:  push_literal(22)
-    3c
-    30    0016
-
-01ae:  store()
-    08
-    e9    0000
-
-01b0:  push_literal(22)
-    3c
-    30    0016
-
-01b2:  load()
-    1c
-    e9    0000
-
-01b4:  push_literal(20)
-    3c
-    30    0014
-
-01b6:  load()
-    1c
-    e9    0000
-
-01b8:  add()
-    28
-    e0    0000
-
-01ba:  dup()
-    3c
     e1    0000
 
-01bc:  push_literal(8)
-    3c
-    30    0008
-
-01be:  store()
-    08
-    e9    0000
-
-01c0:  push_literal(255)
-    3c
-    30    00ff
-
-01c2:  nand()
-    28
-    60    0000
-
-01c4:  push_literal(65535)
-    3c
-    30    ffff
-
-01c6:  nand()
-    28
-    60    0000
-
-01c8:  push_literal(22)
-    3c
-    30    0016
-
-01ca:  store()
-    08
-    e9    0000
-
-01cc:  push_literal(22)
-    3c
-    30    0016
-
-01ce:  io_out()
-    5c
-    e9    0000
-
-01d0:  push_literal(21)
-    3c
-    30    0015
-
-01d2:  io_out()
-    5c
-    e9    0000
-
-01d4:  push_literal(20)
-    3c
-    30    0014
-
-01d6:  load()
-    1c
-    e9    0000
-
-01d8:  push_literal(248)
-    3c
-    30    00f8
-
-01da:  push_literal(65535)
-    3c
-    30    ffff
-
-01dc:  nand()
-    28
-    60    0000
-
-01de:  push_literal(1)
-    3c
-    30    0001
-
-01e0:  add()
-    28
-    e0    0000
-
-01e2:  add()
-    28
-    e0    0000
-
-01e4:  dup()
-    3c
-    e1    0000
-
-01e6:  push_literal(8)
-    3c
-    30    0008
-
-01e8:  store()
-    08
-    e9    0000
-
-01ea:  push_literal(255)
-    3c
-    30    00ff
-
-01ec:  nand()
-    28
-    60    0000
-
-01ee:  push_literal(65535)
-    3c
-    30    ffff
-
-01f0:  nand()
-    28
-    60    0000
-
-01f2:  push_literal(20)
-    3c
-    30    0014
-
-01f4:  store()
-    08
-    e9    0000
-
-01f6:  push_literal(20)
-    3c
-    30    0014
-
-01f8:  load()
-    1c
-    e9    0000
-
-01fa:  push_literal(64)
-    3c
-    30    0040
-
-01fc:  push_literal(65535)
-    3c
-    30    ffff
-
-01fe:  nand()
-    28
-    60    0000
-
-0200:  push_literal(1)
-    3c
-    30    0001
-
-0202:  add()
-    28
-    e0    0000
-
-0204:  add()
-    28
-    e0    0000
-
-0206:  push_literal(8)
-    3c
-    30    0008
-
-0208:  store()
-    08
-    e9    0000
-
-020a:  push_literal(8)
-    3c
-    30    0008
-
-020c:  load()
-    1c
-    e9    0000
-
-020e:  push_literal(255)
-    3c
-    30    00ff
-
-0210:  nand()
-    28
-    60    0000
-
-0212:  push_literal(65535)
-    3c
-    30    ffff
-
-0214:  nand()
-    28
-    60    0000
-
-0216:  jump_if_0()
-    28
-    a1    021c
-
-0218:  push_literal(0)
+0080:  push_literal(0)
     3c
     30    0000
 
-021a:  jump_if_0()
+0082:  jump_if_0()
     28
-    a1    01a2
-
-021c:  push_literal(0)
-    3c
-    30    0000
-
-021e:  push_literal(24)
-    3c
-    30    0018
-
-0220:  store()
-    08
-    e9    0000
-
-0222:  push_literal(24)
-    3c
-    30    0018
-
-0224:  load()
-    1c
-    e9    0000
-
-0226:  noop()
-    3c
-    e9    0000
+    a1    0002
 

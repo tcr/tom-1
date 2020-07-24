@@ -1,9 +1,6 @@
 from tom1 import *
 
-OPERAND_1 = 33
-OPERAND_2 = 2
-
-labels = generate("""
+code = """
 
 [start]
 
@@ -38,9 +35,11 @@ branch0 else 0 0 branch0 then [else] -1 [then] noop
 
 """.format(
   TEMP=0x0100,
-  OPERAND_1=OPERAND_1,
-  OPERAND_2=OPERAND_2
-))
+  OPERAND_1=33,
+  OPERAND_2=2,
+)
+
+labels = generate(code)
 
 debug()
 

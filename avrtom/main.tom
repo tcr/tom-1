@@ -4,187 +4,38 @@
 
 [main]
 
-    # ldi r20,0
-    0 20 store
+    # ldi r21,0
+    0 21 store
 
-    # add r21, r21
-    21 load 21 load add dup {status} store 0xff nand -1 nand 21 store
+    # tst r24
+    24 load dup nand -1 nand {status} store
 
-[L2]
-
-    # mov r30,r20
-    20 load 30 store
-
-    # ldi r31,0
-    0 31 store
-
-    # inc r31
-    31 load 1 add dup {status} store 0xff nand -1 nand 31 store
-
-    # st Z,r21
-    21 load 31 load dup add dup add dup add 30 load add store
-
-    # subi r20,lo8(-(1))
-    20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
-
-    # sbrs r20,7
-
-    # rjmp .L2
-    0 branch0 L2
+    # breq .L1
+    {status} load 0xff nand -1 nand branch0 L1
 
     # ldi r20,0
     0 20 store
 
-    # add r21, r21
-    21 load 21 load add dup {status} store 0xff nand -1 nand 21 store
-
-    # subi r21,lo8(-(1))
-    21 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 21 store
+    # ldi r21,0
+    0 21 store
 
 [L3]
 
-    # mov r30,r20
-    20 load 30 store
-
-    # ldi r31,0
-    0 31 store
-
-    # subi r30,-128
-    30 load -128 -1 nand 1 add add dup {status} store 0xff nand -1 nand 30 store
-
-    # sbci r31,-2
-
-    # st Z,r21
-    21 load 31 load dup add dup add dup add 30 load add store
+    # add r21,r22
+    21 load 22 load add dup {status} store 0xff nand -1 nand 21 store
 
     # subi r20,lo8(-(1))
     20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
 
-    # sbrs r20,7
+    # cp r20,r24
+    20 load 24 load -1 nand 1 add add {status} store
 
-    # rjmp .L3
-    0 branch0 L3
+    # brlo .L3
+    {status} load 256 nand -1 nand load branch0 L3
 
-    # ldi r24,0
-    0 24 store
+[L1]
 
-    # ldi r22,0
-    0 22 store
-
-    # ldi r23,lo8(4)
-    4 23 store
-
-[L4]
-
-    # ldi r20,0
-    0 20 store
-
-[L5]
-
-    # mov r21,r22
-    22 load 21 store
-
-    # add r21,r20
-    21 load 20 load add dup {status} store 0xff nand -1 nand 21 store
-
-    # out 0x20,r21
-    21 out
-
-    # out 0x20,r23
-    23 out
-
-    # subi r20,lo8(-(1))
-    20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
-
-    # cpi r20,lo8(8)
-    20 load 8 -1 nand 1 add add {status} store
-
-    # brne .L5
-    {status} load 0xff nand -1 nand branch0 brne_next0 0 branch0 L5 [brne_next0]
-
-    # subi r22,lo8(-(8))
-    22 load 248 -1 nand 1 add add dup {status} store 0xff nand -1 nand 22 store
-
-    # subi r24,lo8(-(1))
-    24 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 24 store
-
-    # cpi r24,lo8(8)
-    24 load 8 -1 nand 1 add add {status} store
-
-    # brne .L4
-    {status} load 0xff nand -1 nand branch0 brne_next1 0 branch0 L4 [brne_next1]
-
-    # ldi r20,0
-    0 20 store
-
-    # ldi r21,lo8(6)
-    6 21 store
-
-[L6]
-
-    # out 0x20,r20
-    20 out
-
-    # out 0x20,r21
-    21 out
-
-    # ldi r22,lo8(56)
-    56 22 store
-
-    # add r22,r20
-    22 load 20 load add dup {status} store 0xff nand -1 nand 22 store
-
-    # out 0x20,r22
-    22 out
-
-    # out 0x20,r21
-    21 out
-
-    # subi r20,lo8(-(1))
-    20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
-
-    # cpi r20,lo8(8)
-    20 load 8 -1 nand 1 add add {status} store
-
-    # brne .L6
-    {status} load 0xff nand -1 nand branch0 brne_next2 0 branch0 L6 [brne_next2]
-
-    # ldi r20,0
-    0 20 store
-
-    # ldi r21,lo8(6)
-    6 21 store
-
-[L7]
-
-    # out 0x20,r20
-    20 out
-
-    # out 0x20,r21
-    21 out
-
-    # ldi r22,lo8(7)
-    7 22 store
-
-    # add r22,r20
-    22 load 20 load add dup {status} store 0xff nand -1 nand 22 store
-
-    # out 0x20,r22
-    22 out
-
-    # out 0x20,r21
-    21 out
-
-    # subi r20,lo8(-(8))
-    20 load 248 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
-
-    # cpi r20,lo8(64)
-    20 load 64 -1 nand 1 add add {status} store
-
-    # brne .L7
-    {status} load 0xff nand -1 nand branch0 brne_next3 0 branch0 L7 [brne_next3]
-
-    # ldi r24,0
-    0 24 store
+    # mov r24,r21
+    21 load 24 store
 
     # ret
