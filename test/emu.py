@@ -83,8 +83,8 @@ class State:
     self.ram = ram
     self.pc = pc
 
-  def tos(self):
-    return self.data[self.d_reg]
+  def tos(self, offset=0):
+    return self.data[self.d_reg - offset]
 
   def eval(self, until=None):
     def sanity():
@@ -196,57 +196,88 @@ class State:
           label = lambda token: None,
         )
         sanity()
-    
+
       if i > len(ops):
         raise Exception('Ran past end of program')
       if until != None:
         raise Exception('Did not run until label "{}"'.format(until))
-  
+
       self.pc = i
     except UntilException:
       self.pc = i
       pass
 
+
+# code = """
+
+# [start]
+
+# {OPERAND_1} {OPERAND_2}
+
+# >r 0 r> 0
+
+# [do] >r >r
+
+# [loop_body] noop
+# >r {TEMP} ! {TEMP} @ r> {TEMP} @ [over1]
+# +
+
+# [loopimpl] noop r> r>
+# 1 + [oh] noop
+# >r {TEMP} ! {TEMP} @ r> {TEMP} @ [over2] noop
+# >r {TEMP} ! {TEMP} @ r> {TEMP} @ [over3] noop
+# >r >r
+
+# noop [next]
+
+# -1 ~& 1 + + [next2]
+# branch0 else 0 0 branch0 then [else] -1 [then] noop
+
+# [loop_jump] branch0 loop_body
+
+# [loop_done] noop r> drop r> drop
+
+# [call_done] drop
+
+# 0 branch0 start
+
+# """.format(
+#   TEMP=0x0100,
+#   OPERAND_1=33,
+#   OPERAND_2=2,
+# )
+
+# ops = parse(code)
+# state = State()
+# state.eval(until='call_done')
+# print(state.tos())
+
+arg_1 = 4
+arg_2 = 39
+
 code = """
 
-[start]
+    {arg_1} 24 !
+    {arg_2} 22 !
 
-{OPERAND_1} {OPERAND_2}
+    {ext}
 
->r 0 r> 0
-
-[do] >r >r
-
-[loop_body] noop
->r {TEMP} ! {TEMP} @ r> {TEMP} @ [over1]
-+
-
-[loopimpl] noop r> r>
-1 + [oh] noop
->r {TEMP} ! {TEMP} @ r> {TEMP} @ [over2] noop
->r {TEMP} ! {TEMP} @ r> {TEMP} @ [over3] noop
->r >r
-
-noop [next]
-
--1 ~& 1 + + [next2]
-branch0 else 0 0 branch0 then [else] -1 [then] noop
-
-[loop_jump] branch0 loop_body
-
-[loop_done] noop r> drop r> drop
-
-[call_done] drop
-
-0 branch0 start
+    16 load [done]
 
 """.format(
-  TEMP=0x0100,
-  OPERAND_1=33,
-  OPERAND_2=2,
+  ext = open('../avrtom/main.tom', 'r').read(),
+  arg_1 = arg_1,
+  arg_2 = arg_2,
 )
+
 
 ops = parse(code)
 state = State()
-state.eval(until='call_done')
-print(state.tos())
+# for i in range(0,0x108):
+#   state.eval(until='done')
+#   print('ram[31]={} ram[21]={}'.format(hex(state.ram[31]), hex(state.ram[21])))
+#   state.eval(until='d2')
+#   print('status={}'.format(bin(state.ram[8])))
+#   print('tos={}'.format(hex(state.tos())))
+state.eval(until='done')
+print('tos={} (compare={})'.format(state.tos(), arg_1 * arg_2))

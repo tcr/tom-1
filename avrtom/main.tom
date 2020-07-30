@@ -1,41 +1,85 @@
 
-    1 0 store
-    0 256 store
+    0 0 store
+    1 256 store
 
 [main]
 
-    # ldi r21,0
-    0 21 store
+    # ldi r30,255
+    255 30 store
 
-    # tst r24
-    24 load dup nand -1 nand {status} store
+    # ldi r31,2
+    2 31 store
 
-    # breq .L1
-    {status} load 0xff nand -1 nand branch0 L1
+    # ldi r20,254
+    254 20 store
 
-    # ldi r20,0
-    0 20 store
+[L2]
 
-    # ldi r21,0
-    0 21 store
+    # st Z,r20
+    20 load 31 load dup add dup add dup add dup add dup add dup add dup add dup add 30 load add  store
 
-[L3]
+    # mov r26,r20
+    20 load 26 store
 
-    # add r21,r22
-    21 load 22 load add dup {status} store 0xff nand -1 nand 21 store
+    # ldi r27,0
+    0 27 store
 
-    # subi r20,lo8(-(1))
-    20 load 255 -1 nand 1 add add dup {status} store 0xff nand -1 nand 20 store
+    # subi r27,-3
+    27 load 253 -1 nand 1 add add dup 0x8 store 0xff nand -1 nand 27 store
 
-    # cp r20,r24
-    20 load 24 load -1 nand 1 add add {status} store
+    # st X,r30
+    30 load 27 load dup add dup add dup add dup add dup add dup add dup add dup add 26 load add  store
 
-    # brlo .L3
-    {status} load 256 nand -1 nand load branch0 L3
+    # subi r20,2
+    20 load 2 -1 nand 1 add add dup 0x8 store 0xff nand -1 nand 20 store
 
-[L1]
+    # subi r30,1
+    30 load 1 -1 nand 1 add add dup 0x8 store 0xff nand -1 nand 30 store
 
-    # mov r24,r21
-    21 load 24 store
+    # sbc r31,r17
+    31 load 17 load 0x8 load 256 nand -1 nand load add -1 nand 1 add add dup 0x8 store 0xff nand -1 nand 31 store
 
+    # cpi r30,-1
+    30 load 255 -1 nand 1 add add 0x8 store
+
+    # ldi r21,1
+    1 21 store
+
+    # cpc r31,r21
+    31 load 21 load 0x8 load 256 nand -1 nand load add -1 nand 1 add add dup branch0 cpc_next0 0 branch0 cpc_next1 [cpc_next0] 0x8 load 0xff nand -1 nand add [cpc_next1] 0x8 store
+
+    # brne .L2
+    0x8 load 0xff nand -1 nand branch0 brne_next2 0 branch0 L2 [brne_next2]
+
+    # 
+    # clr	    r16
+    0 16 store
+
+[__mulqi3_loop_0]
+
+    # sbrc	r24,0
+    24 load 1 nand -1 nand branch0 __sbrc_0
+
+    # add	    r16,r22
+    16 load 22 load add dup 0x8 store 0xff nand -1 nand 16 store
+[__sbrc_0]
+
+    # add	    r22,r22
+    22 load 22 load add dup 0x8 store 0xff nand -1 nand 22 store
+
+    # breq	__mulqi3_exit_0
+    0x8 load 0xff nand -1 nand branch0 __mulqi3_exit_0
+
+    # lsr	    r24
+    24 load 0x300 add load 24 store
+
+    # brne	__mulqi3_loop_0
+    0x8 load 0xff nand -1 nand branch0 brne_next3 0 branch0 __mulqi3_loop_0 [brne_next3]
+
+[__mulqi3_exit_0]
+
+    # mov     r24,r16
+    16 load 24 store
+
+    # 
     # ret

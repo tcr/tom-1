@@ -596,7 +596,7 @@ e900,3c00,3016,5c00,e900,3c00,3015,5c00,e900,3c00,3014,1c00,e900,3c00,30f8,3cff,
           <string>clk</string>
         </entry>
       </elementAttributes>
-      <pos x="-1940" y="-1920"/>
+      <pos x="-1920" y="-1920"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -2414,7 +2414,7 @@ TOS-BUS-SEL-2</string>
       <p2 x="-720" y="-1920"/>
     </wire>
     <wire>
-      <p1 x="-1940" y="-1920"/>
+      <p1 x="-1920" y="-1920"/>
       <p2 x="-1860" y="-1920"/>
     </wire>
     <wire>
