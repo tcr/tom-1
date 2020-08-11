@@ -1,0 +1,57 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Padauk 13), page 1.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  002710 L
+    .__.ABS.                                                    =  000000 G
+    .__.CPU.                                                    =  000000 L
+    .__.H$L.                                                    =  000000 L
+    __gptrget                                                      ****** GX
+  7 __interrupt_vect                                               000000 R
+    __sdcc_external_startup                                        ****** GX
+  A __sdcc_gs_init_startup                                         000000 R
+  A __sdcc_init_data                                               000000 R
+  7 __sdcc_program_startup                                         000000 R
+  5 __start__stack                                                 000000 R
+  F _main                                                          000000 GR
+  1 _main_PARM_1                                                   000000 GR
+  1 _main_PARM_2                                                   000001 GR
+  2 _main_sloc0_1_0                                                000000 R
+  2 _main_sloc1_1_0                                                000001 R
+  2 _main_sloc2_1_0                                                000002 R
+  2 _main_sloc3_1_0                                                000003 R
+  2 _main_sloc4_1_0                                                000005 R
+  2 _main_sloc5_1_0                                                000007 R
+  2 _main_sloc6_1_0                                                000009 R
+  2 _main_sloc7_1_0                                                00000B R
+    l_DATA                                                         ****** GX
+    l_OSEG                                                         ****** GX
+  D p                                                              000000 GR
+    s_DATA                                                         ****** GX
+    s_OSEG                                                         ****** GX
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Padauk 13), page 2.
+Hexadecimal [24-Bits]
+
+Area Table
+
+   0 _CODE                                      size      0   flags    0
+   1 DATA                                       size      2   flags    0
+   2 OSEG                                       size      D   flags    4
+   3 RSEG                                       size      0   flags    8
+   4 RSEG0                                      size      0   flags    8
+   5 SSEG                                       size      1   flags    0
+   6 DABS                                       size      0   flags    8
+   7 HOME                                       size      2   flags    0
+   8 HEADER                                     size      0   flags    8
+   9 HEADER1                                    size      2   flags    8
+   A GSINIT                                     size     14   flags    0
+   B GSFINAL                                    size      2   flags    0
+   C PREG                                       size      0   flags    8
+   D PREG2                                      size      2   flags    8
+   E HEADER3                                    size     10   flags    8
+   F CODE                                       size     FA   flags    0
+  10 CONST                                      size      0   flags    0
+  11 CABS                                       size      0   flags    8
+

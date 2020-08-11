@@ -1,0 +1,290 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.0.0 #11528 (Mac OS X x86_64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mpdk13
+                                      7 	
+                                      8 
+                                      9 ; default segment ordering in RAM for linker
+                                     10 	.area DATA
+                                     11 	.area OSEG (OVR,DATA)
+                                     12 
+                                     13 ;--------------------------------------------------------
+                                     14 ; Public variables in this module
+                                     15 ;--------------------------------------------------------
+                                     16 	.globl _main
+                                     17 	.globl _main_PARM_2
+                                     18 	.globl _main_PARM_1
+                                     19 ;--------------------------------------------------------
+                                     20 ; special function registers
+                                     21 ;--------------------------------------------------------
+                                     22 	.area RSEG (ABS)
+      000000                         23 	.org 0x0000
+                                     24 ;--------------------------------------------------------
+                                     25 ; ram data
+                                     26 ;--------------------------------------------------------
+                                     27 	.area DATA
+      000000                         28 _main_PARM_1:
+      000000                         29 	.ds 1
+      000001                         30 _main_PARM_2:
+      000001                         31 	.ds 1
+                                     32 ;--------------------------------------------------------
+                                     33 ; overlayable items in ram 
+                                     34 ;--------------------------------------------------------
+                                     35 	.area	OSEG (OVR,DATA)
+      000000                         36 _main_sloc0_1_0:
+      000000                         37 	.ds 1
+      000001                         38 _main_sloc1_1_0:
+      000001                         39 	.ds 1
+      000002                         40 _main_sloc2_1_0:
+      000002                         41 	.ds 1
+      000003                         42 _main_sloc3_1_0:
+      000003                         43 	.ds 2
+      000005                         44 _main_sloc4_1_0:
+      000005                         45 	.ds 2
+      000007                         46 _main_sloc5_1_0:
+      000007                         47 	.ds 2
+      000009                         48 _main_sloc6_1_0:
+      000009                         49 	.ds 2
+      00000B                         50 _main_sloc7_1_0:
+      00000B                         51 	.ds 2
+                                     52 ;--------------------------------------------------------
+                                     53 ; Stack segment in internal ram 
+                                     54 ;--------------------------------------------------------
+                                     55 	.area	SSEG
+      000000                         56 __start__stack:
+      000000                         57 	.ds	1
+                                     58 
+                                     59 ;--------------------------------------------------------
+                                     60 ; absolute external ram data
+                                     61 ;--------------------------------------------------------
+                                     62 	.area DABS (ABS)
+                                     63 ;--------------------------------------------------------
+                                     64 ; interrupt vector 
+                                     65 ;--------------------------------------------------------
+                                     66 	.area HOME
+      000000                         67 __interrupt_vect:
+                                     68 	.area	HEADER (ABS)
+      000020                         69 	.org	 0x0020
+      000020 3B 00                   70 	reti
+                                     71 ;--------------------------------------------------------
+                                     72 ; global & static initialisations
+                                     73 ;--------------------------------------------------------
+                                     74 	.area HOME
+                                     75 	.area GSINIT
+                                     76 	.area GSFINAL
+                                     77 	.area GSINIT
+                                     78 	.area	PREG (ABS)
+      000000                         79 	.org 0x00
+      000000                         80 p::
+      000000                         81 	.ds 2
+                                     82 	.area	HEADER (ABS)
+      000000                         83 	.org 0x0000
+      000000 00 00                   84 	nop
+      000002r81r09                   85 	clear	p+1
+      000004r00r17                   86 	mov	a, #s_OSEG
+      000006r01r10                   87 	add	a, #l_OSEG + 1
+      000008 FE 14                   88 	and	a, #0xfe
+      00000A 82 00                   89 	mov	sp, a
+      00000Cr00r1C                   90 	call	__sdcc_external_startup
+      00000Er00r18                   91 	goto	__sdcc_gs_init_startup
+                                     92 	.area GSINIT
+      000000                         93 __sdcc_gs_init_startup:
+      000000                         94 __sdcc_init_data:
+      000000r00r17                   95 	mov	a, #s_DATA
+      000002rC0r05                   96 	mov	p, a
+      000004r0Er18                   97 	goto	00002$
+      000006                         98 00001$:
+      000006 00 17                   99 	mov	a, #0x00
+      000008rE0r00                  100 	idxm	p, a
+      00000Ar00r09                  101 	inc	p
+      00000Cr00r17                  102 	mov	a, #s_DATA
+      00000E                        103 00002$:
+      00000Er00r10                  104 	add	a, #l_DATA
+      000010r80r0B                  105 	ceqsn	a, p
+      000012r06r18                  106 	goto	00001$
+                                    107 	.area GSFINAL
+      000000r00r18                  108 	goto	__sdcc_program_startup
+                                    109 ;--------------------------------------------------------
+                                    110 ; Home
+                                    111 ;--------------------------------------------------------
+                                    112 	.area HOME
+                                    113 	.area HOME
+      000000                        114 __sdcc_program_startup:
+      000000r00r18                  115 	goto	_main
+                                    116 ;	return from main will return to caller
+                                    117 ;--------------------------------------------------------
+                                    118 ; code
+                                    119 ;--------------------------------------------------------
+                                    120 	.area CODE
+                                    121 ;	main.c: 30: int main(uint8_t a, uint8_t b) {
+                                    122 ;	-----------------------------------------
+                                    123 ;	 function main
+                                    124 ;	-----------------------------------------
+      000000                        125 _main:
+                                    126 ;	main.c: 32: do {
+      000000r80r09                  127 	clear	_main_sloc0_1_0+0
+      000002                        128 00101$:
+                                    129 ;	main.c: 33: k--;
+      000002r40r09                  130 	dec	_main_sloc0_1_0+0
+                                    131 ;	main.c: 34: uint8_t l = k + k;
+      000004rC0r07                  132 	mov	a, _main_sloc0_1_0+0
+      000006rC1r05                  133 	mov	_main_sloc1_1_0+0, a
+      000008rC1r0A                  134 	sl	_main_sloc1_1_0+0
+                                    135 ;	main.c: 35: *(uint8_t*)(0x200 + k) = l;
+      00000ArC0r07                  136 	mov	a, _main_sloc0_1_0+0
+      00000CrC0r05                  137 	mov	p, a
+      00000E 00 17                  138 	mov	a, #0x00
+      000010 02 10                  139 	add	a, #0x02
+      000012rC1r07                  140 	mov	a, _main_sloc1_1_0+0
+      000014rE0r00                  141 	idxm	p, a
+                                    142 ;	main.c: 36: *(uint8_t*)(0x300 + l) = k;
+      000016rC1r07                  143 	mov	a, _main_sloc1_1_0+0
+      000018rC0r05                  144 	mov	p, a
+      00001A 00 17                  145 	mov	a, #0x00
+      00001C 03 10                  146 	add	a, #0x03
+      00001ErC0r07                  147 	mov	a, _main_sloc0_1_0+0
+      000020rE0r00                  148 	idxm	p, a
+                                    149 ;	main.c: 37: } while (k > 0);
+      000022rC0r07                  150 	mov	a, _main_sloc0_1_0+0
+      000024 00 12                  151 	ceqsn	a, #0x00
+      000026r02r18                  152 	goto	00101$
+                                    153 ;	main.c: 39: sum = 0;
+      000028r82r09                  154 	clear	_main_sloc2_1_0+0
+                                    155 ;	main.c: 40: for (i = 0; i < a; ++i) {
+      00002Ar80r09                  156 	clear	p
+      00002C                        157 00115$:
+      00002CrC0r07                  158 	mov	a, p
+      00002Er40r06                  159 	sub	a, _main_PARM_1+0
+      000030 20 0D                  160 	t1sn	f, c
+      000032r3Cr18                  161 	goto	00104$
+                                    162 ;	main.c: 41: sum += b;
+      000034rC1r07                  163 	mov	a, _main_PARM_2+0
+      000036r02r04                  164 	add	_main_sloc2_1_0+0, a
+                                    165 ;	main.c: 40: for (i = 0; i < a; ++i) {
+      000038r00r09                  166 	inc	p
+      00003Ar2Cr18                  167 	goto	00115$
+      00003C                        168 00104$:
+                                    169 ;	main.c: 11: for (iter = 1;iter < 10;iter ++) {
+      00003C 01 17                  170 	mov	a, #0x01
+      00003ErC3r05                  171 	mov	_main_sloc3_1_0+0, a
+      000040r84r09                  172 	clear	_main_sloc3_1_0+1
+                                    173 ;	main.c: 13: for (i = 0; i <= size; i++) {
+      000042                        174 00132$:
+      000042r85r09                  175 	clear	_main_sloc4_1_0+0
+      000044r86r09                  176 	clear	_main_sloc4_1_0+1
+      000046                        177 00118$:
+      000046 58 17                  178 	mov	a, #0x58
+      000048r45r06                  179 	sub	a, _main_sloc4_1_0+0
+      00004A 02 17                  180 	mov	a, #0x02
+      00004CrC6r06                  181 	subc	a, _main_sloc4_1_0+1
+      00004E 60 0C                  182 	t0sn	f, ov
+      000050 80 16                  183 	xor	a, #0x80
+      000052 1B 00                  184 	sl	a
+      000054 20 0C                  185 	t0sn	f, c
+      000056r6Ar18                  186 	goto	00105$
+                                    187 ;	main.c: 14: flags[i] = 1;
+      000058rC5r07                  188 	mov	a, _main_sloc4_1_0+0
+      00005ArC0r05                  189 	mov	p, a
+      00005CrC6r07                  190 	mov	a, _main_sloc4_1_0+1
+      00005E 10 10                  191 	add	a, #0x10
+      000060 01 17                  192 	mov	a, #0x01
+      000062rE0r00                  193 	idxm	p, a
+                                    194 ;	main.c: 13: for (i = 0; i <= size; i++) {
+      000064r05r09                  195 	inc	_main_sloc4_1_0+0
+      000066r06r08                  196 	addc	_main_sloc4_1_0+1
+      000068r46r18                  197 	goto	00118$
+      00006A                        198 00105$:
+                                    199 ;	main.c: 16: for (i = 0; i <= size; i++) {
+      00006Ar87r09                  200 	clear	_main_sloc5_1_0+0
+      00006Cr88r09                  201 	clear	_main_sloc5_1_0+1
+      00006E                        202 00121$:
+      00006E 58 17                  203 	mov	a, #0x58
+      000070r47r06                  204 	sub	a, _main_sloc5_1_0+0
+      000072 02 17                  205 	mov	a, #0x02
+      000074rC8r06                  206 	subc	a, _main_sloc5_1_0+1
+      000076 60 0C                  207 	t0sn	f, ov
+      000078 80 16                  208 	xor	a, #0x80
+      00007A 1B 00                  209 	sl	a
+      00007C 20 0C                  210 	t0sn	f, c
+      00007ErDEr18                  211 	goto	00124$
+                                    212 ;	main.c: 17: if (flags[i]) {
+      000080rC7r07                  213 	mov	a, _main_sloc5_1_0+0
+      000082rC0r05                  214 	mov	p, a
+      000084rC8r07                  215 	mov	a, _main_sloc5_1_0+1
+      000086 10 10                  216 	add	a, #0x10
+      000088r00r1C                  217 	call	__gptrget
+      00008A 00 12                  218 	ceqsn	a, #0x00
+      00008Cr90r18                  219 	goto	00184$
+      00008ErD8r18                  220 	goto	00122$
+      000090                        221 00184$:
+                                    222 ;	main.c: 18: prime = i + i + 3;
+      000090rC8r07                  223 	mov	a, _main_sloc5_1_0+1
+      000092rC0r05                  224 	mov	p, a
+      000094rC7r07                  225 	mov	a, _main_sloc5_1_0+0
+      000096 1B 00                  226 	sl	a
+      000098r40r0B                  227 	slc	p
+      00009A 03 10                  228 	add	a, #0x03
+      00009CrC9r05                  229 	mov	_main_sloc6_1_0+0, a
+      00009E 00 17                  230 	mov	a, #0x00
+      0000A0r80r06                  231 	addc	a, p
+      0000A2rCAr05                  232 	mov	_main_sloc6_1_0+1, a
+                                    233 ;	main.c: 19: kv = 1 + prime;
+      0000A4rC9r07                  234 	mov	a, _main_sloc6_1_0+0
+      0000A6 01 10                  235 	add	a, #0x01
+      0000A8rCBr05                  236 	mov	_main_sloc7_1_0+0, a
+      0000AArCAr07                  237 	mov	a, _main_sloc6_1_0+1
+      0000AC 10 00                  238 	addc	a
+      0000AErCCr05                  239 	mov	_main_sloc7_1_0+1, a
+                                    240 ;	main.c: 20: while (kv <= size) {
+      0000B0                        241 00106$:
+      0000B0 58 17                  242 	mov	a, #0x58
+      0000B2r4Br06                  243 	sub	a, _main_sloc7_1_0+0
+      0000B4 02 17                  244 	mov	a, #0x02
+      0000B6rCCr06                  245 	subc	a, _main_sloc7_1_0+1
+      0000B8 60 0C                  246 	t0sn	f, ov
+      0000BA 80 16                  247 	xor	a, #0x80
+      0000BC 1B 00                  248 	sl	a
+      0000BE 20 0C                  249 	t0sn	f, c
+      0000C0rD8r18                  250 	goto	00122$
+                                    251 ;	main.c: 21: flags[kv] = 0;
+      0000C2rCBr07                  252 	mov	a, _main_sloc7_1_0+0
+      0000C4rC0r05                  253 	mov	p, a
+      0000C6rCCr07                  254 	mov	a, _main_sloc7_1_0+1
+      0000C8 10 10                  255 	add	a, #0x10
+      0000CA 00 17                  256 	mov	a, #0x00
+      0000CCrE0r00                  257 	idxm	p, a
+                                    258 ;	main.c: 22: kv += prime;
+      0000CErC9r07                  259 	mov	a, _main_sloc6_1_0+0
+      0000D0r0Br04                  260 	add	_main_sloc7_1_0+0, a
+      0000D2rCAr07                  261 	mov	a, _main_sloc6_1_0+1
+      0000D4r8Cr04                  262 	addc	_main_sloc7_1_0+1, a
+      0000D6rB0r18                  263 	goto	00106$
+                                    264 ;	main.c: 24: count = count + 1;
+      0000D8                        265 00122$:
+                                    266 ;	main.c: 16: for (i = 0; i <= size; i++) {
+      0000D8r07r09                  267 	inc	_main_sloc5_1_0+0
+      0000DAr08r08                  268 	addc	_main_sloc5_1_0+1
+      0000DCr6Er18                  269 	goto	00121$
+      0000DE                        270 00124$:
+                                    271 ;	main.c: 11: for (iter = 1;iter < 10;iter ++) {
+      0000DEr03r09                  272 	inc	_main_sloc3_1_0+0
+      0000E0r04r08                  273 	addc	_main_sloc3_1_0+1
+      0000E2rC3r07                  274 	mov	a, _main_sloc3_1_0+0
+      0000E4 0A 11                  275 	sub	a, #0x0a
+      0000E6rC4r07                  276 	mov	a, _main_sloc3_1_0+1
+      0000E8 11 00                  277 	subc	a
+      0000EA 60 0C                  278 	t0sn	f, ov
+      0000EC 80 16                  279 	xor	a, #0x80
+      0000EE 1B 00                  280 	sl	a
+      0000F0 20 0C                  281 	t0sn	f, c
+      0000F2r42r18                  282 	goto	00132$
+                                    283 ;	main.c: 46: return sum;
+      0000F4r80r09                  284 	clear	p
+      0000F6rC2r07                  285 	mov	a, _main_sloc2_1_0+0
+                                    286 ;	main.c: 47: }
+      0000F8 3A 00                  287 	ret
+                                    288 	.area CODE
+                                    289 	.area CONST
+                                    290 	.area CABS (ABS)
